@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- SECURITY HEADERS -->
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.gstatic.com; font-src https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="X-Frame-Options" content="DENY">
+<title>BLACKMARKET // Underground Marketplace</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="./style.css">
+<script src="./lucid.js"></script>
+</head>
+<body>
+
+<div class="bg-fixed"><canvas id="particles" width="681" height="680"></canvas></div>
+<div class="hex-overlay"></div>
+<div class="grid-floor"></div>
+<div class="vignette"></div>
+<div class="scanline"></div>
+
+<nav>
+  <div class="logo">
+    <span class="logo-mark">
+      <svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" stroke="#00eaff" stroke-width="2"></polygon><circle cx="20" cy="20" r="6" fill="#00eaff"></circle></svg>
+    </span>
+    BLACK<span>::MARKET</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#marketplace">Marketplace</a></li>
+    <li><a href="#countries">Countries</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn btn-ghost btn-sm" id="cartBtn" style="position:relative;"><i data-lucide="shopping-cart" style="width:15px;height:15px;"></i> Cart <span id="cartCount" style="display:none;position:absolute;top:-8px;right:-8px;background:var(--red);color:#fff;border-radius:50%;width:19px;height:19px;font-size:10px;align-items:center;justify-content:center;">0</span></button>
+    <a href="#dashboard" class="btn btn-ghost btn-sm"><i data-lucide="shield-check" style="width:15px;height:15px;"></i> Console</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-tag"><span class="bar"></span> WELCOME TO THE UNDERGROUND WORLD · EST. 2025 <span class="bar"></span></div>
+      <h1>Secure the grid.<br><span class="glitch" data-text="Train like an operator.">Train like an operator.</span></h1>
+      <p class="desc">BLACKMARKET is a global marketplace for cybersecurity training — penetration testing labs, digital forensics challenges, and CTF ranges built for operators who defend tomorrow's networks.</p>
+      <div class="hero-actions">
+        <a href="#marketplace" class="btn btn-primary"><i data-lucide="zap" style="width:16px;height:16px;"></i> Enter Marketplace</a>
+        <a href="#dashboard" class="btn btn-ghost"><i data-lucide="terminal" style="width:16px;height:16px;"></i> Launch Console</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b id="cStudents">0</b><span>Active Operators</span></div>
+        <div class="stat"><b id="cLabs">0</b><span>Live Training Labs</span></div>
+        <div class="stat"><b id="cCountries">0</b><span>Regional Nodes</span></div>
+        <div class="stat"><b id="cUptime">0</b><span>Network Uptime</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="radar-ring" style="width:100%;height:100%;"></div>
+      <div class="radar-ring" style="width:78%;height:78%;"></div>
+      <div class="radar-ring" style="width:52%;height:52%;"></div>
+      <canvas id="globeCanvas" width="460" height="460"></canvas>
+      <div class="hologram">
+        <div class="holo-core"><i data-lucide="bot" aria-hidden="true"></i></div>
+        <div class="holo-label">ARIA · AI GUIDE</div>
+        <div class="holo-sub">Monitoring 214 nodes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span>◆ 16 REGIONAL NODES ONLINE</span> ZERO-DAY TRAINING LABS REFRESHED HOURLY
+    <span>◆ 42,900+ CERTIFIED OPERATORS</span> ENCRYPTED PAYMENT RAILS: BTC · ETH · USDT · XMR
+    <span>◆ 99.98% NETWORK UPTIME</span> NEW CTF SEASON LIVE NOW
+    <span>◆ 16 REGIONAL NODES ONLINE</span> ZERO-DAY TRAINING LABS REFRESHED HOURLY
+    <span>◆ 42,900+ CERTIFIED OPERATORS</span> ENCRYPTED PAYMENT RAILS: BTC · ETH · USDT · XMR
+    <span>◆ 99.98% NETWORK UPTIME</span> NEW CTF SEASON LIVE NOW
+  </div>
+</div>
+
+<section class="section-pad" id="countries">
+  <div class="wrap">
+    <div class="eyebrow reveal">Regional Access Nodes</div>
+    <h2 class="section-title reveal">Select a <span class="glow-text">training region</span></h2>
+    <p class="section-sub reveal">Each node hosts a localized library of cybersecurity training resources, CTF ranges, and simulation environments — priced in your preferred crypto rail.</p>
+    <div class="country-grid" id="countryGrid">
+  <div class="panel country-card" onclick="openCountry(0)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">US</div>
+    <h3>UNITED STATES</h3>
+    <div class="meta">40 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(1)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">UK</div>
+    <h3>UNITED KINGDOM</h3>
+    <div class="meta">117 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(2)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">CA</div>
+    <h3>CANADA</h3>
+    <div class="meta">46 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(3)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">AU</div>
+    <h3>AUSTRALIA</h3>
+    <div class="meta">90 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(4)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">DE</div>
+    <h3>GERMANY</h3>
+    <div class="meta">45 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(5)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">FR</div>
+    <h3>FRANCE</h3>
+    <div class="meta">55 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(6)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">ES</div>
+    <h3>SPAIN</h3>
+    <div class="meta">110 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(7)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">IT</div>
+    <h3>ITALY</h3>
+    <div class="meta">82 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(8)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">JP</div>
+    <h3>JAPAN</h3>
+    <div class="meta">84 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(9)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">KR</div>
+    <h3>SOUTH KOREA</h3>
+    <div class="meta">90 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(10)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">IN</div>
+    <h3>INDIA</h3>
+    <div class="meta">121 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(11)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">SG</div>
+    <h3>SINGAPORE</h3>
+    <div class="meta">58 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(12)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">BR</div>
+    <h3>BRAZIL</h3>
+    <div class="meta">121 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(13)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">MX</div>
+    <h3>MEXICO</h3>
+    <div class="meta">118 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(14)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">ZA</div>
+    <h3>SOUTH AFRICA</h3>
+    <div class="meta">56 RESOURCES</div>
+  </div>
+
+  <div class="panel country-card" onclick="openCountry(15)">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">AE</div>
+    <h3>UNITED ARAB EMIRATES</h3>
+    <div class="meta">98 RESOURCES</div>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="section-pad" id="marketplace">
+  <div class="wrap">
+    <div class="eyebrow reveal visible">Global Marketplace</div>
+    <h2 class="section-title reveal visible">Featured <span class="glow-text">training resources</span></h2>
+    <p class="section-sub reveal visible">A sample of what's inside every regional node — fictional training content for education and demonstration purposes only.</p>
+    <div class="category-tabs reveal visible" id="catTabs"><button class="tab" data-i="0">All</button><button class="tab" data-i="1">Cybersecurity Courses</button><button class="tab" data-i="2">Penetration Testing Labs</button><button class="tab active" data-i="3">Digital Forensics Challenges</button><button class="tab" data-i="4">Proxy &amp; VPNs</button><button class="tab" data-i="5">Malware Analysis Labs</button><button class="tab" data-i="6">OSINT Training</button><button class="tab" data-i="7">Secure Coding Resources</button><button class="tab" data-i="8">Network Defense Simulations</button><button class="tab" data-i="9">Incident Response Exercises</button></div>
+    <div class="product-grid" id="featuredGrid"></div>
+  </div>
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-easy">Basic</div>
+      <i data-lucide="search"></i>
+    </div>
+    <div class="product-body">
+      <h4>Tax Refund Fullz</h4>
+      <div class="product-meta">
+        <span class="stars">★★★★☆</span>
+        <span>4.5</span>
+        <span>·</span>
+        <span><i data-lucide="users" style="width:12px;height:12px;vertical-align:-2px;"></i> 1,348</span>
+      </div>
+      <div class="product-desc">Fullz are sold in batches of 50, Verified fullz</div>
+      <div class="price-box">
+        <div>USD <span class="val">$39</span></div>
+        <div>BTC <span class="val">0.00063</span></div>
+        <div>ETH <span class="val">0.0115</span></div>
+        <div>XMR <span class="val">0.236</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="addToCart('p18', this)">Add to Cart</button>
+      <button class="wish-btn" onclick="this.classList.toggle('active')"><i data-lucide="heart" style="width:16px;height:16px;"></i></button>
+    </div>
+  </div>
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">Pro</div>
+      <i data-lucide="search"></i>
+    </div>
+    <div class="product-body">
+      <h4>FAFSA Fullz</h4>
+      <div class="product-meta">
+        <span class="stars">★★★★☆</span>
+        <span>4.3</span>
+        <span>·</span>
+        <span><i data-lucide="users" style="width:12px;height:12px;vertical-align:-2px;"></i> 2,091</span>
+      </div>
+      <div class="product-desc">Fullz are sold in batches of 50, Verified fullz</div>
+      <div class="price-box">
+        <div>USD <span class="val">$53</span></div>
+        <div>BTC <span class="val">0.00085</span></div>
+        <div>ETH <span class="val">0.0156</span></div>
+        <div>XMR <span class="val">0.321</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="addToCart('p19', this)">Add to Cart</button>
+      <button class="wish-btn" onclick="this.classList.toggle('active')"><i data-lucide="heart" style="width:16px;height:16px;"></i></button>
+    </div>
+  </div>
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-hard">Elite</div>
+      <i data-lucide="search"></i>
+    </div>
+    <div class="product-body">
+      <h4>Online Verification Fullz</h4>
+      <div class="product-meta">
+        <span class="stars">★★★★☆</span>
+        <span>4.6</span>
+        <span>·</span>
+        <span><i data-lucide="users" style="width:12px;height:12px;vertical-align:-2px;"></i> 8,030</span>
+      </div>
+      <div class="product-desc">Fullz are sold in batches of 50, Verified fullz</div>
+      <div class="price-box">
+        <div>USD <span class="val">$53</span></div>
+        <div>BTC <span class="val">0.00085</span></div>
+        <div>ETH <span class="val">0.0156</span></div>
+        <div>XMR <span class="val">0.321</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="addToCart('p20', this)">Add to Cart</button>
+      <button class="wish-btn" onclick="this.classList.toggle('active')"><i data-lucide="heart" style="width:16px;height:16px;"></i></button>
+    </div>
+  </div></div>
+  </div>
+</section>
+
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <div class="eyebrow reveal visible">Platform Services</div>
+    <h2 class="section-title reveal visible">Beyond <span class="glow-text">the marketplace</span></h2>
+    <p class="section-sub reveal visible">Direct services for people who want more than self-paced courses — priced fairly, delivered by real operators.</p>
+    <div class="product-grid" id="servicesGrid">
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">Custom Quote</div>
+      <i data-lucide="code-2"></i>
+    </div>
+    <div class="product-body">
+      <h4>Web Development</h4>
+      <div class="product-desc">Landing pages, full sites, or web apps — pricing depends on scope, features, and timeline.</div>
+      <div class="price-box" style="grid-template-columns:1fr;">
+        <div>Starting at <span class="val">Negotiable</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="openServiceInquiry(0)">Request Service</button>
+    </div>
+  </div>
+
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">Per Session</div>
+      <i data-lucide="compass"></i>
+    </div>
+    <div class="product-body">
+      <h4>Hacking Services</h4>
+      <div class="product-desc">One-on-one guidance on breaking into or advancing within cybersecurity careers — resume, certs, interview prep.</div>
+      <div class="price-box" style="grid-template-columns:1fr;">
+        <div>Starting at <span class="val">$18</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="openServiceInquiry(1)">Request Service</button>
+    </div>
+  </div>
+
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">Live / Cohort</div>
+      <i data-lucide="presentation"></i>
+    </div>
+    <div class="product-body">
+      <h4>Course Teaching</h4>
+      <div class="product-desc">Live instruction or custom curriculum design for teams and individuals across any course topic on the platform.</div>
+      <div class="price-box" style="grid-template-columns:1fr;">
+        <div>Starting at <span class="val">$20</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="openServiceInquiry(2)">Request Service</button>
+    </div>
+  </div>
+
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">Account Hardening</div>
+      <i data-lucide="shield-check"></i>
+    </div>
+    <div class="product-body">
+      <h4>Account Recovery</h4>
+      <div class="product-desc">Help securing accounts and infrastructure you own — 2FA setup, password hygiene audits, phishing-resistance review.</div>
+      <div class="price-box" style="grid-template-columns:1fr;">
+        <div>Starting at <span class="val">$15</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="openServiceInquiry(3)">Request Service</button>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="section-pad" id="dashboard">
+  <div class="wrap">
+    <div class="eyebrow reveal visible">Operator Console</div>
+    <h2 class="section-title reveal visible">Your <span class="glow-text">command dashboard</span></h2>
+    <p class="section-sub reveal visible">Track progress, manage wallet balances, and monitor your security posture from a single unified console.</p>
+
+    <div class="dash-grid">
+      <div class="dash-col">
+        <div class="card panel reveal visible">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="profile-head">
+            <div class="avatar">OP</div>
+            <div>
+              <div style="font-weight:700;font-size:16px;">Operator_774</div>
+              <div style="font-size:12px;color:var(--muted);font-family:var(--mono);">Clearance Tier: GHOST · Member since 2026</div>
+            </div>
+          </div>
+          <h3><i data-lucide="briefcase"></i> Portfolio</h3>
+          <div class="row-line"><div class="name">Penetration Testing Labs</div><div>18 completed</div></div>
+          <div class="row-line"><div class="name">Digital Forensics Challenges</div><div>9 completed</div></div>
+          <div class="row-line"><div class="name">CTF Writeups Published</div><div>27</div></div>
+          <div class="row-line"><div class="name">Malware Analysis Labs</div><div>12 completed</div></div>
+        </div>
+
+        <div class="card panel reveal visible">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="history"></i> Purchase History</h3>
+          <div class="mono" style="font-size:11px;margin-bottom:10px;color:var(--muted);">Live feed • 50 randomized entries • refreshes every 30s</div>
+          <div id="purchaseHistoryList">
+      <div class="row-line"><div class="name">Proxy &amp; VPNs — HTTP — France Node</div><div class="mono pos">237 USDT</div></div>
+    
+      <div class="row-line"><div class="name">Secure Coding — Basic — South Africa Node</div><div class="mono pos">7.74 XMR</div></div>
+    
+      <div class="row-line"><div class="name">Web App Pentesting — Elite — Singapore Node</div><div class="mono pos">22.39 XMR</div></div>
+    
+      <div class="row-line"><div class="name">Malware Analysis — Basic — Germany Node</div><div class="mono pos">240 USDT</div></div>
+    </div>
+        </div>
+
+        <div class="card panel reveal visible">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="activity"></i> Recent Activity Timeline</h3>
+          <div id="timelineList">
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">Completed "Web App Pentest Range" — Tier 2</div><div class="t-time">2 hours ago</div></div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">New badge earned: Forensics Analyst I</div><div class="t-time">Yesterday</div></div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">Wishlist added: OSINT Recon Simulator</div><div class="t-time">2 days ago</div></div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">Wallet funded: +0.02 ETH</div><div class="t-time">3 days ago</div></div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">Joined CTF: Nightfall Protocol</div><div class="t-time">5 days ago</div></div>
+  </div></div>
+        </div>
+
+        <div class="card panel reveal">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="terminal-square"></i> Live Training Terminal</h3>
+          <div class="terminal">
+            <div class="tbar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <div id="termOut">&gt; initializing sandbox environment...\n&gt; loading module</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-col">
+        <div class="card panel reveal">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="shield"></i> Security Score</h3>
+          <div class="security-gauge">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(0,234,255,0.12)" stroke-width="8"></circle>
+              <circle id="gaugeCircle" cx="50" cy="50" r="42" fill="none" stroke="#00ffb2" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"></circle>
+            </svg>
+            <div>
+              <div class="gauge-num" id="gaugeNum">0%</div>
+              <div style="font-size:12px;color:var(--muted);">2FA active · No breach flags</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel reveal">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="wallet"></i> Wallet Balances</h3>
+          <div class="row-line"><div class="name"><span class="coin-dot" style="background:#f7931a;"></span> Bitcoin (BTC)</div><div class="mono">0.184</div></div>
+          <div class="row-line"><div class="name"><span class="coin-dot" style="background:#627eea;"></span> Ethereum (ETH)</div><div class="mono">2.410</div></div>
+          <div class="row-line"><div class="name"><span class="coin-dot" style="background:#26a17b;"></span> Tether (USDT)</div><div class="mono">1,240</div></div>
+          <div class="row-line"><div class="name"><span class="coin-dot" style="background:#ff6600;"></span> Monero (XMR)</div><div class="mono">14.62</div></div>
+        </div>
+
+        <div class="card panel reveal">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="radar"></i> Live Network Map</h3>
+          <div class="radar-box">
+            <div class="radar-sweep"></div>
+            <div class="radar-blip" style="top:30%;left:60%;"></div>
+            <div class="radar-blip" style="top:65%;left:35%;"></div>
+            <div class="radar-blip" style="top:50%;left:75%;"></div>
+          </div>
+        </div>
+
+        <div class="card panel reveal">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="bell"></i> Notifications</h3>
+          <div class="notif"><i data-lucide="alert-triangle"></i> New CTF season starts in 3 days.</div>
+          <div class="notif"><i data-lucide="check-circle"></i> Forensics Lab #12 graded: 94/100.</div>
+          <div class="notif"><i data-lucide="download"></i> Course certificate ready to download.</div>
+        </div>
+
+        <div class="card panel reveal">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <h3><i data-lucide="folder-down"></i> Download Center</h3>
+          <div class="download-item"><span>Pentest_Report_Template.pdf</span><span class="dl-btn"><i data-lucide="download" style="width:14px;height:14px;"></i></span></div>
+          <div class="download-item"><span>OSINT_Toolkit_Notes.md</span><span class="dl-btn"><i data-lucide="download" style="width:14px;height:14px;"></i></span></div>
+          <div class="download-item"><span>CTF_Writeup_Bundle.zip</span><span class="dl-btn"><i data-lucide="download" style="width:14px;height:14px;"></i></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="about">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div class="reveal">
+      <div class="eyebrow">About Black Market</div>
+      <h2 class="section-title">A training ground, <span class="glow-text">not a marketplace for harm</span></h2>
+      <p style="color:var(--muted);font-size:16.5px;margin-bottom:16px;">A marketplace for all you need, your number 2 top mart. BLACKMARKET exists to help defenders get better. Every lab, course, and CTF range is built and reviewed by security professionals, hosted in isolated sandboxes, and designed to teach — never to enable real-world intrusion or data theft.</p>
+      <p style="color:var(--muted);font-size:16.5px;">All countries, prices, and user activity shown across this site are fictional and for demonstration purposes only.</p>
+    </div>
+    <div class="panel reveal" style="padding:30px;">
+      <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <h3 style="margin-bottom:16px;"><i data-lucide="lock" style="width:16px;height:16px;color:var(--cyan);"></i> Platform Principles</h3>
+      <div class="row-line"><div class="name">Isolated, disposable lab sandboxes</div><i data-lucide="check" style="width:16px;height:16px;color:var(--emerald);"></i></div>
+      <div class="row-line"><div class="name">No real personal or financial data</div><i data-lucide="check" style="width:16px;height:16px;color:var(--emerald);"></i></div>
+      <div class="row-line"><div class="name">Reviewed by security educators</div><i data-lucide="check" style="width:16px;height:16px;color:var(--emerald);"></i></div>
+      <div class="row-line"><div class="name">Built for defenders, not attackers</div><i data-lucide="check" style="width:16px;height:16px;color:var(--emerald);"></i></div>
+    </div>
+  </div>
+</section>
+
+<footer id="support">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">
+          <span class="logo-mark"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" stroke="#00eaff" stroke-width="2"></polygon><circle cx="20" cy="20" r="6" fill="#00eaff"></circle></svg></span>
+          BLACK<span>::MARKET</span>
+        </div>
+        <p style="color:var(--muted);font-size:14px;max-width:280px;">A global cyber command center for cybersecurity training, simulation, and defense research.</p>
+      </div>
+      <div><h4>Platform</h4><ul><li><a href="#marketplace">Marketplace</a></li><li><a href="#countries">Regional Nodes</a></li><li><a href="#services">Services</a></li><li><a href="#dashboard">Dashboard</a></li></ul></div>
+      <div><h4>Resources</h4><ul><li><a href="#">Documentation</a></li><li><a href="#">API Access</a></li><li><a href="#">Community</a></li><li><a href="#">Status</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#">Help Center</a></li><li><a href="#">Contact Ops</a></li><li><a href="#">Trust &amp; Safety</a></li><li><a href="#">Terms</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BLACK::MARKET — Remote Canyon, Nevada, USA</span>
+      <span>ENCRYPTED · MONITORED · SECURE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="countryModal">
+  <div class="panel modal-panel">
+    <button class="modal-close" id="modalClose"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+    <div class="modal-header">
+      <div class="flag-chip" id="modalFlag"></div>
+      <div>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-sub" id="modalSub"></div>
+      </div>
+    </div>
+    <div class="product-grid" id="modalGrid"></div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="drawer-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3 style="display:flex;align-items:center;gap:8px;"><i data-lucide="shopping-cart" style="width:18px;height:18px;color:var(--cyan);"></i> Your Cart</h3>
+    <button id="cartClose" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;color:var(--cyan);"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+  </div>
+  <div id="cartItems"><div class="cart-empty"><i data-lucide="shopping-cart" style="width:36px;height:36px;opacity:0.4;"></i><div style="margin-top:10px;">Your cart is empty.</div></div></div>
+  <div class="cart-total" id="cartTotalRow" style="display:none;">
+    <span>Total (USD)</span>
+    <span id="cartTotalVal">$0</span>
+  </div>
+  <button class="btn btn-primary" id="checkoutBtn" style="width:100%;justify-content:center;margin-top:16px;display:none;">
+    <i data-lucide="lock" style="width:15px;height:15px;"></i> Proceed to Checkout
+  </button>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay checkout-modal" id="paymentModal">
+  <div class="panel modal-panel">
+    <button class="modal-close" id="paymentClose"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+    <div class="eyebrow" style="margin-bottom:8px;">Secure Checkout</div>
+    <h2 style="font-size:24px;margin-bottom:22px;">Complete your payment</h2>
+
+    <div class="amount-due">
+      <div class="lbl">Amount Due</div>
+      <div class="val" id="payUsdAmount">$0</div>
+    </div>
+
+    <div class="crypto-tabs" id="cryptoTabs">
+      <button class="crypto-tab active" data-c="btc">Bitcoin (BTC)</button>
+      <button class="crypto-tab" data-c="eth">Ethereum (ETH)</button>
+      <button class="crypto-tab" data-c="usdt">Tether (USDT)</button>
+      <button class="crypto-tab" data-c="xmr">Monero (XMR)</button>
+    </div>
+
+    <div class="qr-box"><i data-lucide="qr-code" aria-hidden="true"></i></div>
+    <div style="text-align:center;font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:4px;">Send exactly</div>
+    <div style="text-align:center;font-family:var(--disp);font-size:22px;color:var(--cyan);margin-bottom:18px;" id="payCryptoAmount">0.00000 BTC</div>
+
+    <div class="wallet-row">
+      <span id="walletAddress" style="flex:1;">Loading address...</span>
+      <button class="copy-btn" id="copyWallet"><i data-lucide="copy" style="width:14px;height:14px;"></i></button>
+    </div>
+
+    <div class="note-box">
+      <i data-lucide="info" aria-hidden="true"></i>
+      <span>Payments are manually verified. Once sent, click "I've Sent Payment" below and you'll be asked to confirm your email and attach proof of payment.</span>
+    </div>
+
+    <button class="btn btn-primary" id="sentPaymentBtn" style="width:100%;justify-content:center;">
+      <i data-lucide="check-circle" style="width:15px;height:15px;"></i> I've Sent Payment
+    </button>
+  </div>
+</div>
+
+<!-- CONFIRMATION / PROOF OF PAYMENT MODAL -->
+<div class="modal-overlay checkout-modal" id="confirmModal">
+  <div class="panel modal-panel">
+    <button class="modal-close" id="confirmClose"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+    <div id="confirmFormWrap">
+      <div class="eyebrow" style="margin-bottom:8px;">Almost done</div>
+      <h2 style="font-size:24px;margin-bottom:6px;">Confirm your order</h2>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:22px;">Enter your email and attach a screenshot of your payment. This opens your email app with your order details pre-filled — just attach the screenshot before sending.</p>
+
+      <div class="form-field">
+        <label>Email address</label>
+        <input type="email" id="confirmEmail" placeholder="you@example.com" required="">
+      </div>
+      <div class="form-field">
+        <label>Order reference</label>
+        <input type="text" id="confirmOrderRef" readonly="" style="color:var(--muted);">
+      </div>
+      <div class="form-field">
+        <label>Attach payment screenshot</label>
+        <div class="file-drop" id="fileDrop">
+          <i data-lucide="upload" aria-hidden="true"></i><br>
+          Click to choose a screenshot (attach it in your email app when it opens)
+        </div>
+        <input type="file" id="proofFile" accept="image/*" style="display:none;">
+        <div class="file-name" id="fileNameDisplay"></div>
+      </div>
+      <div class="note-box">
+        <i data-lucide="mail" aria-hidden="true"></i>
+        <span>This will open your default email app addressed to <b id="supportEmailDisplay">support@yourdomain.com</b> with your order pre-filled. Please attach the screenshot before hitting send — browsers can't attach files automatically.</span>
+      </div>
+      <button class="btn btn-primary" id="sendConfirmBtn" style="width:100%;justify-content:center;">
+        <i data-lucide="send" style="width:15px;height:15px;"></i> Open Email to Send Confirmation
+      </button>
+    </div>
+    <div id="confirmSuccessWrap" style="display:none;">
+      <div class="success-box">
+        <i data-lucide="check-circle-2" aria-hidden="true"></i>
+        <h2 style="font-size:22px;margin-bottom:8px;">Email app opened</h2>
+        <p style="color:var(--muted);font-size:14px;">Attach your payment screenshot and hit send in your email app. We'll confirm your order once it's received.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE INQUIRY MODAL -->
+<div class="modal-overlay checkout-modal" id="serviceModal">
+  <div class="panel modal-panel">
+    <button class="modal-close" id="serviceClose"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+    <div class="eyebrow" style="margin-bottom:8px;">Service Request</div>
+    <h2 style="font-size:24px;margin-bottom:6px;" id="serviceModalTitle"></h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:22px;" id="serviceModalDesc"></p>
+    <div id="serviceFormFields"></div>
+    <div class="form-field">
+      <label>Your email</label>
+      <input type="email" id="serviceEmail" placeholder="you@example.com" required="">
+    </div>
+    <button class="btn btn-primary" id="sendServiceBtn" style="width:100%;justify-content:center;">
+      <i data-lucide="send" style="width:15px;height:15px;"></i> Send Request
+    </button>
+  </div>
+</div>
+
+<script>
+/* ============ SECURITY UTILITIES ============ */
+// Input sanitization to prevent XSS attacks
+function sanitizeHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// Validate email format
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+// Sanitize email input to prevent email injection
+function sanitizeEmail(email) {
+  return email.trim().replace(/[\r\n]/g, '').toLowerCase();
+}
+
+// Validate wallet addresses (basic format checks)
+function isValidWalletAddress(addr, type) {
+  if (!addr || typeof addr !== 'string') return false;
+  switch(type) {
+    case 'btc': return /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,62}$/.test(addr);
+    case 'eth': return /^0x[a-fA-F0-9]{40}$/.test(addr);
+    case 'usdt': return /^T[a-zA-Z0-9]{33}$/.test(addr);
+    case 'xmr': return /^[4][a-zA-Z0-9]{93}$/.test(addr);
+    default: return false;
+  }
+}
+
+// CSRF Token generation and validation
+const CSRFToken = (() => {
+  let token = null;
+  return {
+    generate: () => {
+      token = 'csrf_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      sessionStorage.setItem('csrf_token', token);
+      return token;
+    },
+    get: () => {
+      token = sessionStorage.getItem('csrf_token');
+      return token || this.generate();
+    },
+    validate: (providedToken) => {
+      const stored = sessionStorage.getItem('csrf_token');
+      return stored && stored === providedToken;
+    }
+  };
+})();
+
+// Initialize CSRF token on page load
+CSRFToken.generate();
+
+// Secure logging (avoid logging sensitive data)
+function secureLog(message, level = 'info') {
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] [${level.toUpperCase()}] ${message}`;
+  if (level === 'error' || level === 'warn') {
+    console.warn(logMessage);
+  } else {
+    console.log(logMessage);
+  }
+}
+
+// Content Security Policy violation handler
+document.addEventListener('securitypolicyviolation', (e) => {
+  secureLog(`CSP Violation: ${e.violatedDirective}`, 'warn');
+});
+
+// Function to refresh icons safely
+function refreshIcons() {
+  if (window.lucide && typeof lucide.createIcons === 'function') {
+    try {
+      lucide.createIcons();
+    } catch(e) {
+      secureLog('Icon render skipped', 'warn');
+    }
+  }
+}
+
+refreshIcons();
+
+/* ============ PARTICLE FIELD ============ */
+const pCanvas = document.getElementById('particles');
+const pCtx = pCanvas.getContext('2d');
+let particles = [];
+function resizeParticles(){
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+}
+function initParticles(){
+  resizeParticles();
+  const count = window.innerWidth < 720 ? 45 : 90;
+  particles = Array.from({length:count},()=>({
+    x:Math.random()*pCanvas.width, y:Math.random()*pCanvas.height,
+    vx:(Math.random()-0.5)*0.25, vy:(Math.random()-0.5)*0.25, r:Math.random()*1.6+0.4
+  }));
+}
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  for(let i=0;i<particles.length;i++){
+    const p = particles[i];
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0)p.x=pCanvas.width; if(p.x>pCanvas.width)p.x=0;
+    if(p.y<0)p.y=pCanvas.height; if(p.y>pCanvas.height)p.y=0;
+    pCtx.beginPath();
+    pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    pCtx.fillStyle='rgba(0,234,255,0.55)';
+    pCtx.fill();
+    for(let j=i+1;j<particles.length;j++){
+      const q = particles[j];
+      const d = Math.hypot(p.x-q.x,p.y-q.y);
+      if(d<120){
+        pCtx.beginPath();
+        pCtx.moveTo(p.x,p.y); pCtx.lineTo(q.x,q.y);
+        pCtx.strokeStyle = `rgba(0,234,255,${0.12*(1-d/120)})`;
+        pCtx.lineWidth=1;
+        pCtx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+initParticles();
+drawParticles();
+window.addEventListener('resize', resizeParticles);
+
+/* ============ GLOBE ============ */
+const gCanvas = document.getElementById('globeCanvas');
+const gCtx = gCanvas.getContext('2d');
+let angle = 0;
+const globePoints = [];
+const R = 170;
+for(let lat=-80; lat<=80; lat+=20){
+  for(let lon=0; lon<360; lon+=20){
+    const phi = lat*Math.PI/180, theta = lon*Math.PI/180;
+    globePoints.push({
+      x: R*Math.cos(phi)*Math.cos(theta),
+      y: R*Math.sin(phi),
+      z: R*Math.cos(phi)*Math.sin(theta),
+      node: Math.random()<0.05
+    });
+  }
+}
+const nodes = globePoints.filter(p=>p.node).slice(0,10);
+function drawGlobe(){
+  gCtx.clearRect(0,0,gCanvas.width,gCanvas.height);
+  const cx = gCanvas.width/2, cy = gCanvas.height/2;
+  angle += 0.0032;
+  const projected = globePoints.map(p=>{
+    const x = p.x*Math.cos(angle) - p.z*Math.sin(angle);
+    const z = p.x*Math.sin(angle) + p.z*Math.cos(angle);
+    const scale = 300/(300+z);
+    return {sx: cx + x*scale, sy: cy + p.y*scale, z, scale, node:p.node};
+  });
+  projected.sort((a,b)=>a.z-b.z);
+  projected.forEach(p=>{
+    const alpha = Math.max(0.08, p.scale-0.55);
+    gCtx.beginPath();
+    gCtx.arc(p.sx, p.sy, p.node? 3.2*p.scale : 1.6*p.scale, 0, Math.PI*2);
+    gCtx.fillStyle = p.node ? `rgba(0,255,178,${alpha})` : `rgba(0,234,255,${alpha*0.7})`;
+    gCtx.fill();
+    if(p.node){
+      gCtx.beginPath();
+      gCtx.arc(p.sx,p.sy, 7*p.scale, 0, Math.PI*2);
+      gCtx.strokeStyle = `rgba(0,255,178,${alpha*0.5})`;
+      gCtx.stroke();
+    }
+  });
+  gCtx.beginPath();
+  gCtx.arc(cx,cy,R*0.98,0,Math.PI*2);
+  gCtx.strokeStyle='rgba(0,234,255,0.15)';
+  gCtx.stroke();
+  requestAnimationFrame(drawGlobe);
+}
+drawGlobe();
+
+/* ============ COUNTER ANIMATION ============ */
+function animateCount(el, target, suffix=''){
+  let cur = 0;
+  const step = Math.max(1, target/60);
+  const t = setInterval(()=>{
+    cur += step;
+    if(cur>=target){cur=target; clearInterval(t);}
+    el.textContent = Math.floor(cur).toLocaleString()+suffix;
+  }, 20);
+}
+const statObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animateCount(document.getElementById('cStudents'), 42900, '+');
+      animateCount(document.getElementById('cLabs'), 1280, '+');
+      animateCount(document.getElementById('cCountries'), 16);
+      animateCount(document.getElementById('cUptime'), 99, '%');
+      statObserver.disconnect();
+    }
+  });
+},{threshold:0.4});
+statObserver.observe(document.querySelector('.stat-row'));
+
+/* ============ REVEAL ON SCROLL ============ */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ============ SECURITY GAUGE ============ */
+const gaugeObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const circle = document.getElementById('gaugeCircle');
+      const num = document.getElementById('gaugeNum');
+      const target = 87, circumference = 264;
+      let cur = 0;
+      const t = setInterval(()=>{
+        cur++;
+        circle.style.strokeDashoffset = circumference - (circumference*cur/100);
+        num.textContent = cur+'%';
+        if(cur>=target) clearInterval(t);
+      },14);
+      gaugeObserver.disconnect();
+    }
+  });
+},{threshold:0.4});
+gaugeObserver.observe(document.getElementById('gaugeCircle'));
+
+/* ============ TIMELINE ============ */
+const timelineData = [
+  {title:'Completed "Web App Pentest Range" — Tier 2', time:'2 hours ago'},
+  {title:'New badge earned: Forensics Analyst I', time:'Yesterday'},
+  {title:'Wishlist added: OSINT Recon Simulator', time:'2 days ago'},
+  {title:'Wallet funded: +0.02 ETH', time:'3 days ago'},
+  {title:'Joined CTF: Nightfall Protocol', time:'5 days ago'}
+];
+document.getElementById('timelineList').innerHTML = timelineData.map(t=>`
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">${sanitizeHTML(t.title)}</div><div class="t-time">${sanitizeHTML(t.time)}</div></div>
+  </div>`).join('');
+
+/* ============ TERMINAL TYPEWRITER ============ */
+const termLines = [
+  '> initializing sandbox environment...',
+  '> loading module: network_defense_sim.pkg',
+  '> environment ready. 0 vulnerabilities flagged.',
+  '> awaiting operator input_',
+  '> course progress saved: 68%',
+  '> CTF flag validated: BLACKMARKET{tr41n1ng_c0mpl3t3}',
+  '> generating completion certificate...'
+];
+const termOut = document.getElementById('termOut');
+let lineIdx = 0, charIdx = 0;
+function typeTerm(){
+  if(lineIdx >= termLines.length){ lineIdx = 0; termOut.textContent=''; }
+  const full = termLines.slice(0,lineIdx).join('\\n') + (lineIdx<termLines.length? (lineIdx>0?'\\n':'') + termLines[lineIdx].slice(0,charIdx):'');
+  termOut.textContent = full;
+  charIdx++;
+  if(charIdx > termLines[lineIdx].length){
+    charIdx = 0; lineIdx++;
+    setTimeout(typeTerm, 700);
+  } else {
+    setTimeout(typeTerm, 28);
+  }
+}
+typeTerm();
+
+/* ============ NAV MOBILE ============ */
+document.getElementById('burger').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.remove('open');
+}));
+
+/* ============ DATA: COUNTRIES + CATEGORIES + PRODUCTS ============ */
+const countries = [
+  {name:'United States', code:'US'}, {name:'United Kingdom', code:'UK'}, {name:'Canada', code:'CA'},
+  {name:'Australia', code:'AU'}, {name:'Germany', code:'DE'}, {name:'France', code:'FR'},
+  {name:'Spain', code:'ES'}, {name:'Italy', code:'IT'}, {name:'Japan', code:'JP'},
+  {name:'South Korea', code:'KR'}, {name:'India', code:'IN'}, {name:'Singapore', code:'SG'},
+  {name:'Brazil', code:'BR'}, {name:'Mexico', code:'MX'}, {name:'South Africa', code:'ZA'},
+  {name:'United Arab Emirates', code:'AE'}
+];
+
+const categories = [
+  {name:'Cybersecurity Courses', icon:'graduation-cap'},
+  {name:'Penetration Testing Labs', icon:'terminal'},
+  {name:'Digital Forensics Challenges', icon:'search'},
+  {name:'Proxy & VPNs', icon:'flag'},
+  {name:'Malware Analysis Labs', icon:'bug'},
+  {name:'OSINT Training', icon:'eye'},
+  {name:'Secure Coding Resources', icon:'code'},
+  {name:'Network Defense Simulations', icon:'shield'},
+  {name:'Incident Response Exercises', icon:'siren'}
+];
+
+const templates = [
+  {title:'Web App Pentesting — Basic', cat:1, diff:'Easy', desc:'Foundations of web application testing: recon, common vulnerability classes, and reporting.', tier:'Basic', price:29},
+  {title:'Web App Pentesting — Pro', cat:1, diff:'Medium', desc:'Full guided labs covering auth flaws, injection, and business-logic testing in sandboxes.', tier:'Pro', price:79},
+  {title:'Web App Pentesting — Elite', cat:1, diff:'Hard', desc:'Advanced attack-path chaining, exploit development basics, and a capstone assessment.', tier:'Elite', price:149},
+  {title:'Tax Refund Fullz', cat:2, diff:'Easy', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Basic', price:35},
+  {title:'FAFSA Fullz', cat:2, diff:'Medium', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Pro', price:35},
+  {title:'Online Verification Fullz', cat:2, diff:'Hard', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Elite', price:35},
+  {title:'Proxy & VPNs — Socks5', cat:4, diff:'Easy', desc:'Fast, unlimited bandwidth, 1 year, up to 3 states IP', tier:'Basic', price:18},
+  {title:'Proxy & VPNs — Socks4', cat:4, diff:'Medium', desc:'Fast, unlimited bandwidth, 1 year, up to 3 states IP', tier:'Pro', price:18},
+  {title:'Proxy & VPNs — HTTPS', cat:4, diff:'Hard', desc:'Fast, up to 1 year or usage', tier:'Elite', price:12},
+  {title:'Proxy & VPNs — HTTP', cat:4, diff:'Hard', desc:'Fast, up to 1 year or usage', tier:'Elite', price:12},
+  {title:'Malware Analysis — Basic', cat:4, diff:'Easy', desc:'Static analysis fundamentals in a safe, disposable sandbox environment.', tier:'Basic', price:29},
+  {title:'Malware Analysis — Pro', cat:4, diff:'Medium', desc:'Dynamic analysis and behavior mapping of simulated samples.', tier:'Pro', price:79},
+  {title:'Malware Analysis — Elite', cat:4, diff:'Hard', desc:'Unpacking, deobfuscation basics, and a full reverse-engineering capstone.', tier:'Elite', price:149},
+  {title:'OSINT Training — Basic', cat:5, diff:'Easy', desc:'Open-source recon fundamentals against fictional target profiles.', tier:'Basic', price:29},
+  {title:'OSINT Training — Pro', cat:5, diff:'Medium', desc:'Advanced footprinting, correlation, and reporting techniques.', tier:'Pro', price:79},
+  {title:'OSINT Training — Elite', cat:5, diff:'Hard', desc:'Full engagement simulation from tasking to client-ready report.', tier:'Elite', price:149},
+  {title:'Secure Coding — Basic', cat:6, diff:'Easy', desc:'Core principles of writing safe authentication and input handling code.', tier:'Basic', price:29},
+  {title:'Secure Coding — Pro', cat:6, diff:'Medium', desc:'Threat modeling and secure API design workshops with real code review.', tier:'Pro', price:79},
+  {title:'Network Defense — Basic', cat:7, diff:'Easy', desc:'Firewall and IDS fundamentals using simulated network traffic.', tier:'Basic', price:29},
+  {title:'Network Defense — Pro', cat:7, diff:'Medium', desc:'Tuning detections against staged attack traffic in a lab range.', tier:'Pro', price:79},
+  {title:'Incident Response — Basic', cat:8, diff:'Easy', desc:'Tabletop fundamentals: detection, triage, and communication basics.', tier:'Basic', price:29},
+  {title:'Incident Response — Pro', cat:8, diff:'Medium', desc:'Full simulated breach response from containment through recovery.', tier:'Pro', price:79},
+  {title:'Spy App', cat:8, diff:'Easy', desc:'Monitoring and tracking tools for discreet oversight.', tier:'Basic', price:30}
+];
+
+function seededRand(seed){
+  let x = Math.sin(seed)*10000;
+  return x - Math.floor(x);
+}
+
+function priceFor(usd){
+  return {
+    btc:(usd/62000).toFixed(5),
+    eth:(usd/3400).toFixed(4),
+    usdt:usd,
+    xmr:(usd/165).toFixed(3)
+  };
+}
+
+function diffClass(d){
+  return d==='Easy' ? 'diff-easy' : d==='Hard' ? 'diff-hard' : 'diff-medium';
+}
+
+function generatePurchaseHistoryEntries(count = 50){
+  const currencies = [
+    {code:'BTC', min:0.001, max:0.03},
+    {code:'ETH', min:0.01, max:0.2},
+    {code:'USDT', min:10, max:250},
+    {code:'XMR', min:0.5, max:25}
+  ];
+  return Array.from({length: count}, ()=>{
+    const country = countries[Math.floor(Math.random()*countries.length)];
+    const product = templates[Math.floor(Math.random()*templates.length)];
+    const currency = currencies[Math.floor(Math.random()*currencies.length)];
+    const amount = (currency.min + Math.random()*(currency.max-currency.min)).toFixed(currency.code==='BTC' ? 4 : currency.code==='ETH' ? 2 : currency.code==='USDT' ? 0 : 2);
+    return {title:`${product.title} — ${country.name} Node`, value:`${amount} ${currency.code}`};
+  });
+}
+
+function renderPurchaseHistory(){
+  const pool = generatePurchaseHistoryEntries(50);
+  const visible = pool.slice(0, 4);
+  const container = document.getElementById('purchaseHistoryList');
+  if(container){
+    container.innerHTML = visible.map(item=>`
+      <div class="row-line"><div class="name">${sanitizeHTML(item.title)}</div><div class="mono pos">${sanitizeHTML(item.value)}</div></div>
+    `).join('');
+  }
+}
+
+renderPurchaseHistory();
+setInterval(renderPurchaseHistory, 30000);
+
+function ratingStars(r){
+  const full = Math.floor(r);
+  return '★'.repeat(full) + '☆'.repeat(5-full);
+}
+
+let productSeq = 0;
+const productRegistry = {};
+function productCard(t, seed, regionLabel){
+  const id = 'p'+(productSeq++);
+  const isFullzItem = /Fullz/i.test(t.title);
+  const displayPrice = isFullzItem
+    ? Math.round(35 + seededRand(seed*7)*20)
+    : t.price;
+  productRegistry[id] = {title:sanitizeHTML(t.title+(regionLabel?' — '+regionLabel+' Node':'')), price:displayPrice, tier:t.tier};
+  const price = priceFor(displayPrice);
+  const rating = (4.1 + seededRand(seed*2)*0.9).toFixed(1);
+  const users = Math.floor(400 + seededRand(seed*3)*8000);
+  const cat = categories[t.cat];
+  return `
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff ${diffClass(t.diff)}">${sanitizeHTML(t.tier)}</div>
+      <i data-lucide="${sanitizeHTML(cat.icon)}"></i>
+    </div>
+    <div class="product-body">
+      <h4>${sanitizeHTML(t.title)}${regionLabel? ' — '+sanitizeHTML(regionLabel)+' Node':''}</h4>
+      <div class="product-meta">
+        <span class="stars">${ratingStars(rating)}</span>
+        <span>${rating}</span>
+        <span>·</span>
+        <span><i data-lucide="users" style="width:12px;height:12px;vertical-align:-2px;"></i> ${users.toLocaleString()}</span>
+      </div>
+      <div class="product-desc">${sanitizeHTML(t.desc)}</div>
+      <div class="price-box">
+        <div>USD <span class="val">$${displayPrice}</span></div>
+        <div>BTC <span class="val">${price.btc}</span></div>
+        <div>ETH <span class="val">${price.eth}</span></div>
+        <div>XMR <span class="val">${price.xmr}</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" data-product-id="${id}">Add to Cart</button>
+      <button class="wish-btn"><i data-lucide="heart" style="width:16px;height:16px;"></i></button>
+    </div>
+  </div>`;
+}
+
+/* ---- country grid ---- */
+const countryGrid = document.getElementById('countryGrid');
+countryGrid.innerHTML = countries.map((c,i)=>`
+  <div class="panel country-card" data-country-idx="${i}">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">${sanitizeHTML(c.code)}</div>
+    <h3>${sanitizeHTML(c.name.toUpperCase())}</h3>
+    <div class="meta">${Math.floor(40+seededRand(i*7)*90)} RESOURCES</div>
+  </div>
+`).join('');
+
+// Add event delegation for country cards
+countryGrid.addEventListener('click', (e) => {
+  const card = e.target.closest('[data-country-idx]');
+  if (card) {
+    const idx = parseInt(card.dataset.countryIdx);
+    openCountry(idx);
+  }
+});
+
+refreshIcons();
+
+/* ---- category tabs + featured grid ---- */
+const catTabs = document.getElementById('catTabs');
+catTabs.innerHTML = ['All', ...categories.map(c=>c.name)].map((c,i)=>`<button class="tab ${i===0?'active':''}" data-i="${i}">${sanitizeHTML(c)}</button>`).join('');
+function renderFeatured(filterIdx){
+  const grid = document.getElementById('featuredGrid');
+  const items = templates.filter(t => filterIdx===0 || t.cat === filterIdx-1).slice(0,9);
+  grid.innerHTML = items.map((t,i)=>productCard(t, i+11)).join('');
+  attachBuyButtonListeners(grid);
+  refreshIcons();
+}
+renderFeatured(0);
+catTabs.addEventListener('click', e=>{
+  const btn = e.target.closest('.tab');
+  if(!btn) return;
+  catTabs.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFeatured(parseInt(btn.dataset.i));
+});
+
+/* ---- services grid ---- */
+const services = [
+  {
+    icon:'code-2', title:'Web Development', priceLabel:'Negotiable', badge:'Custom Quote',
+    desc:'Landing pages, full sites, or web apps — pricing depends on scope, features, and timeline.',
+    fields:[
+      {label:'Project type', type:'select', options:['Landing page','Business website','Web application','E-commerce site','Other']},
+      {label:'Budget range (optional)', type:'text', placeholder:'e.g. $200 - $500'},
+      {label:'Project details', type:'textarea', placeholder:'Tell us what you need built, timeline, and any references.'}
+    ]
+  },
+  {
+    icon:'compass', title:'Hacking Services', priceLabel:'$18', badge:'Per Session',
+    desc:'One-on-one guidance on breaking into or advancing within cybersecurity careers — resume, certs, interview prep.',
+    fields:[
+      {label:'Current experience level', type:'select', options:['Beginner / student','Career changer','1-3 years experience','3+ years experience']},
+      {label:'What do you want to focus on?', type:'textarea', placeholder:'e.g. resume review, certification roadmap, interview prep'}
+    ]
+  },
+  {
+    icon:'presentation', title:'Course Teaching', priceLabel:'$20', badge:'Live / Cohort',
+    desc:'Live instruction or custom curriculum design for teams and individuals across any course topic on the platform.',
+    fields:[
+      {label:'Format', type:'select', options:['1-on-1 live session','Group / cohort','Custom curriculum design']},
+      {label:'Topic of interest', type:'text', placeholder:'e.g. malware analysis, OSINT, secure coding'},
+      {label:'Additional details', type:'textarea', placeholder:'Group size, timeline, or specific goals.'}
+    ]
+  },
+  {
+    icon:'shield-check', title:'Account Recovery', priceLabel:'$15', badge:'Account Hardening',
+    desc:'Help securing accounts and infrastructure you own — 2FA setup, password hygiene audits, phishing-resistance review.',
+    fields:[
+      {label:'What do you need secured?', type:'select', options:['Personal accounts','Small business systems','Website / web app','General consultation']},
+      {label:'Details', type:'textarea', placeholder:'Describe what you would like reviewed or hardened.'}
+    ]
+  }
+];
+const serviceGrid = document.getElementById('servicesGrid');
+serviceGrid.innerHTML = services.map((s,i)=>`
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">${sanitizeHTML(s.badge)}</div>
+      <i data-lucide="${sanitizeHTML(s.icon)}"></i>
+    </div>
+    <div class="product-body">
+      <h4>${sanitizeHTML(s.title)}</h4>
+      <div class="product-desc">${sanitizeHTML(s.desc)}</div>
+      <div class="price-box" style="grid-template-columns:1fr;">
+        <div>Starting at <span class="val">${sanitizeHTML(s.priceLabel)}</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" data-service-idx="${i}">Request Service</button>
+    </div>
+  </div>
+`).join('');
+
+// Add event delegation for service buttons
+serviceGrid.addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-service-idx]');
+  if (btn) {
+    const idx = parseInt(btn.dataset.serviceIdx);
+    openServiceInquiry(idx);
+  }
+});
+
+refreshIcons();
+
+/* ---- country modal ---- */
+const modal = document.getElementById('countryModal');
+function openCountry(i){
+  const c = countries[i];
+  document.getElementById('modalFlag').textContent = c.code;
+  document.getElementById('modalTitle').textContent = sanitizeHTML(c.name.toUpperCase() + ' NODE');
+  document.getElementById('modalSub').textContent = `${categories.length} training categories · localized course catalog`;
+  const grid = document.getElementById('modalGrid');
+  const items = templates.slice(0,6).map((t,k)=>({t, seed:(i+1)*13+k}));
+  grid.innerHTML = items.map(({t,seed})=>productCard(t, seed, c.name)).join('');
+  attachBuyButtonListeners(grid);
+  refreshIcons();
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+// Add event delegation for buy buttons
+function attachBuyButtonListeners(container) {
+  container.querySelectorAll('button[data-product-id]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const id = e.target.closest('button').dataset.productId;
+      addToCart(id, e.target.closest('button'));
+    });
+  });
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+function closeModal(){
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ============ CONFIG ============ */
+const SUPPORT_EMAIL = 'support@yourdomain.com'; // <-- replace with your real support address
+
+/* ============ CART STATE ============ */
+let cart = []; // {id, title, price, tier}
+
+function addToCart(id, btnEl){
+  const item = productRegistry[id];
+  if (!item) {
+    secureLog('Invalid product ID', 'warn');
+    return;
+  }
+  cart.push({...item});
+  updateCartUI();
+  if(btnEl){
+    const original = btnEl.textContent;
+    btnEl.textContent = 'Added ✓';
+    setTimeout(()=>{ btnEl.textContent = original; }, 1200);
+  }
+  openCart();
+}
+
+function removeFromCart(idx){
+  if (idx >= 0 && idx < cart.length) {
+    cart.splice(idx,1);
+    updateCartUI();
+  }
+}
+
+function cartTotal(){
+  return cart.reduce((sum,i)=>sum+i.price, 0);
+}
+
+function updateCartUI(){
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = cart.length;
+  countEl.style.display = cart.length ? 'flex' : 'none';
+
+  const itemsEl = document.getElementById('cartItems');
+  if(cart.length === 0){
+    itemsEl.innerHTML = '<div class="cart-empty"><i data-lucide="shopping-cart" style="width:36px;height:36px;opacity:0.4;"></i><div style="margin-top:10px;">Your cart is empty.</div></div>';
+    document.getElementById('cartTotalRow').style.display = 'none';
+    document.getElementById('checkoutBtn').style.display = 'none';
+  } else {
+    itemsEl.innerHTML = cart.map((item,idx)=>`
+      <div class="cart-item">
+        <div class="ci-icon"><i data-lucide="book-open"></i></div>
+        <div class="ci-body">
+          <div class="ci-title">${sanitizeHTML(item.title)}</div>
+          <div class="ci-sub">${sanitizeHTML(item.tier) || 'Course'} tier</div>
+        </div>
+        <div class="ci-price">$${item.price}</div>
+        <button class="ci-remove" data-remove-idx="${idx}"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+    `).join('');
+    
+    // Add event listeners for remove buttons
+    itemsEl.querySelectorAll('[data-remove-idx]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.closest('button').dataset.removeIdx);
+        removeFromCart(idx);
+      });
+    });
+    
+    document.getElementById('cartTotalRow').style.display = 'flex';
+    document.getElementById('cartTotalVal').textContent = '$'+cartTotal();
+    document.getElementById('checkoutBtn').style.display = 'flex';
+  }
+  refreshIcons();
+}
+updateCartUI();
+
+function openCart(){
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+/* ============ CHECKOUT / PAYMENT ============ */
+const wallets = {
+  btc: {label:'Bitcoin (BTC)', address:'bc1qexampleWALLETaddress0000000demoONLY', rate:62000},
+  eth: {label:'Ethereum (ETH)', address:'0xEXAMPLEwalletADDRESS0000000demoONLY', rate:3400},
+  usdt:{label:'Tether (USDT, TRC20)', address:'TEXAMPLEwalletADDRESS0000000demoONLY', rate:1},
+  xmr: {label:'Monero (XMR)', address:'4EXAMPLEwalletADDRESS0000000000000demoONLY', rate:165}
+};
+let activeCrypto = 'btc';
+let currentOrderRef = '';
+
+function openPaymentModal(){
+  closeCart();
+  const usd = cartTotal();
+  if (usd <= 0) {
+    secureLog('Invalid cart total', 'warn');
+    return;
+  }
+  document.getElementById('payUsdAmount').textContent = '$'+usd;
+  currentOrderRef = 'NXS-'+Date.now().toString(36).toUpperCase();
+  renderCryptoAmount(usd);
+  document.getElementById('paymentModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function renderCryptoAmount(usd){
+  const w = wallets[activeCrypto];
+  const amt = (usd / w.rate);
+  const decimals = activeCrypto === 'usdt' ? 2 : 5;
+  document.getElementById('payCryptoAmount').textContent = amt.toFixed(decimals) + ' ' + activeCrypto.toUpperCase();
+  document.getElementById('walletAddress').textContent = w.address;
+}
+
+document.getElementById('cryptoTabs').addEventListener('click', e=>{
+  const btn = e.target.closest('.crypto-tab');
+  if(!btn) return;
+  document.querySelectorAll('.crypto-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCrypto = btn.dataset.c;
+  renderCryptoAmount(cartTotal());
+});
+
+document.getElementById('checkoutBtn').addEventListener('click', openPaymentModal);
+
+document.getElementById('paymentClose').addEventListener('click', ()=>{
+  document.getElementById('paymentModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+
+document.getElementById('copyWallet').addEventListener('click', ()=>{
+  const text = document.getElementById('walletAddress').textContent;
+  if (!text || !isValidWalletAddress(text, activeCrypto)) {
+    secureLog('Invalid wallet address', 'warn');
+    return;
+  }
+  navigator.clipboard?.writeText(text);
+  const btn = document.getElementById('copyWallet');
+  btn.innerHTML = '<i data-lucide="check" style="width:14px;height:14px;"></i>';
+  refreshIcons();
+  setTimeout(()=>{ btn.innerHTML = '<i data-lucide="copy" style="width:14px;height:14px;"></i>'; refreshIcons(); }, 1200);
+});
+
+/* ============ CONFIRMATION FORM ============ */
+document.getElementById('sentPaymentBtn').addEventListener('click', ()=>{
+  document.getElementById('paymentModal').classList.remove('open');
+  document.getElementById('confirmOrderRef').value = currentOrderRef;
+  document.getElementById('confirmFormWrap').style.display = 'block';
+  document.getElementById('confirmSuccessWrap').style.display = 'none';
+  document.getElementById('supportEmailDisplay').textContent = SUPPORT_EMAIL;
+  document.getElementById('confirmModal').classList.add('open');
+});
+
+document.getElementById('confirmClose').addEventListener('click', ()=>{
+  document.getElementById('confirmModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+
+document.getElementById('fileDrop').addEventListener('click', ()=> document.getElementById('proofFile').click());
+
+document.getElementById('proofFile').addEventListener('change', (e)=>{
+  const f = e.target.files[0];
+  if (f && f.type.startsWith('image/')) {
+    document.getElementById('fileNameDisplay').textContent = 'Selected: '+sanitizeHTML(f.name)+' — remember to attach it in the email that opens.';
+  } else {
+    document.getElementById('fileNameDisplay').textContent = 'Invalid file type. Please select an image.';
+  }
+});
+
+document.getElementById('sendConfirmBtn').addEventListener('click', ()=>{
+  const email = document.getElementById('confirmEmail').value.trim();
+  if (!isValidEmail(email)) {
+    secureLog('Invalid email format', 'warn');
+    document.getElementById('confirmEmail').focus();
+    return;
+  }
+  const sanitizedEmail = sanitizeEmail(email);
+  const orderLines = cart.map(i=>`- ${i.title} ($${i.price})`).join('%0D%0A');
+  const subject = encodeURIComponent('Payment confirmation — Order '+currentOrderRef);
+  const body =
+    'Order reference: '+currentOrderRef+'%0D%0A'+
+    'Customer email: '+encodeURIComponent(sanitizedEmail)+'%0D%0A'+
+    'Payment method: '+activeCrypto.toUpperCase()+'%0D%0A'+
+    'Total: $'+cartTotal()+'%0D%0A%0D%0A'+
+    'Items:%0D%0A'+orderLines+'%0D%0A%0D%0A'+
+    '(Please attach your payment screenshot to this email before sending.)';
+  window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+  document.getElementById('confirmFormWrap').style.display = 'none';
+  document.getElementById('confirmSuccessWrap').style.display = 'block';
+  refreshIcons();
+  cart = [];
+  updateCartUI();
+});
+
+/* ============ SERVICE INQUIRY ============ */
+function openServiceInquiry(idx){
+  if (idx < 0 || idx >= services.length) {
+    secureLog('Invalid service index', 'warn');
+    return;
+  }
+  const s = services[idx];
+  document.getElementById('serviceModalTitle').textContent = sanitizeHTML(s.title);
+  document.getElementById('serviceModalDesc').textContent = sanitizeHTML(s.desc + ' (' + s.priceLabel + ')');
+  const fieldsWrap = document.getElementById('serviceFormFields');
+  fieldsWrap.innerHTML = s.fields.map((f,i)=>{
+    if(f.type === 'select'){
+      return `<div class="form-field"><label>${sanitizeHTML(f.label)}</label><select data-fi="${i}">${f.options.map(o=>`<option>${sanitizeHTML(o)}</option>`).join('')}</select></div>`;
+    } else if(f.type === 'textarea'){
+      return `<div class="form-field"><label>${sanitizeHTML(f.label)}</label><textarea data-fi="${i}" placeholder="${sanitizeHTML(f.placeholder||'')}"></textarea></div>`;
+    }
+    return `<div class="form-field"><label>${sanitizeHTML(f.label)}</label><input type="text" data-fi="${i}" placeholder="${sanitizeHTML(f.placeholder||'')}"></div>`;
+  }).join('');
+  document.getElementById('serviceModal').dataset.serviceIdx = idx;
+  document.getElementById('serviceModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+document.getElementById('serviceClose').addEventListener('click', ()=>{
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+
+document.getElementById('sendServiceBtn').addEventListener('click', ()=>{
+  const idx = parseInt(document.getElementById('serviceModal').dataset.serviceIdx);
+  if (idx < 0 || idx >= services.length) {
+    secureLog('Invalid service index', 'warn');
+    return;
+  }
+  const s = services[idx];
+  const email = document.getElementById('serviceEmail').value.trim();
+  if (!isValidEmail(email)) {
+    secureLog('Invalid email format', 'warn');
+    document.getElementById('serviceEmail').focus();
+    return;
+  }
+  const sanitizedEmail = sanitizeEmail(email);
+  const inputs = document.querySelectorAll('#serviceFormFields [data-fi]');
+  let details = '';
+  inputs.forEach(inp=>{
+    const label = s.fields[parseInt(inp.dataset.fi)].label;
+    details += label+': '+encodeURIComponent(inp.value)+'%0D%0A';
+  });
+  const subject = encodeURIComponent('Service request — '+s.title);
+  const body = 'Requested service: '+s.title+'%0D%0A'+'Customer email: '+encodeURIComponent(sanitizedEmail)+'%0D%0A%0D%0A'+details;
+  window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+
+/* close checkout-type modals on backdrop click */
+['paymentModal','confirmModal','serviceModal'].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener('click', e=>{ if(e.target===el){ el.classList.remove('open'); document.body.style.overflow=''; } });
+});
+</script>
+
+/* ============ PARTICLE FIELD ============ */
+const pCanvas = document.getElementById('particles');
+const pCtx = pCanvas.getContext('2d');
+let particles = [];
+function resizeParticles(){
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+}
+function initParticles(){
+  resizeParticles();
+  const count = window.innerWidth < 720 ? 45 : 90;
+  particles = Array.from({length:count},()=>({
+    x:Math.random()*pCanvas.width, y:Math.random()*pCanvas.height,
+    vx:(Math.random()-0.5)*0.25, vy:(Math.random()-0.5)*0.25, r:Math.random()*1.6+0.4
+  }));
+}
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  for(let i=0;i<particles.length;i++){
+    const p = particles[i];
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0)p.x=pCanvas.width; if(p.x>pCanvas.width)p.x=0;
+    if(p.y<0)p.y=pCanvas.height; if(p.y>pCanvas.height)p.y=0;
+    pCtx.beginPath();
+    pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    pCtx.fillStyle='rgba(0,234,255,0.55)';
+    pCtx.fill();
+    for(let j=i+1;j<particles.length;j++){
+      const q = particles[j];
+      const d = Math.hypot(p.x-q.x,p.y-q.y);
+      if(d<120){
+        pCtx.beginPath();
+        pCtx.moveTo(p.x,p.y); pCtx.lineTo(q.x,q.y);
+        pCtx.strokeStyle = `rgba(0,234,255,${0.12*(1-d/120)})`;
+        pCtx.lineWidth=1;
+        pCtx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+initParticles();
+drawParticles();
+window.addEventListener('resize', resizeParticles);
+
+/* ============ GLOBE ============ */
+const gCanvas = document.getElementById('globeCanvas');
+const gCtx = gCanvas.getContext('2d');
+let angle = 0;
+const globePoints = [];
+const R = 170;
+for(let lat=-80; lat<=80; lat+=20){
+  for(let lon=0; lon<360; lon+=20){
+    const phi = lat*Math.PI/180, theta = lon*Math.PI/180;
+    globePoints.push({
+      x: R*Math.cos(phi)*Math.cos(theta),
+      y: R*Math.sin(phi),
+      z: R*Math.cos(phi)*Math.sin(theta),
+      node: Math.random()<0.05
+    });
+  }
+}
+const nodes = globePoints.filter(p=>p.node).slice(0,10);
+function drawGlobe(){
+  gCtx.clearRect(0,0,gCanvas.width,gCanvas.height);
+  const cx = gCanvas.width/2, cy = gCanvas.height/2;
+  angle += 0.0032;
+  const projected = globePoints.map(p=>{
+    const x = p.x*Math.cos(angle) - p.z*Math.sin(angle);
+    const z = p.x*Math.sin(angle) + p.z*Math.cos(angle);
+    const scale = 300/(300+z);
+    return {sx: cx + x*scale, sy: cy + p.y*scale, z, scale, node:p.node};
+  });
+  projected.sort((a,b)=>a.z-b.z);
+  projected.forEach(p=>{
+    const alpha = Math.max(0.08, p.scale-0.55);
+    gCtx.beginPath();
+    gCtx.arc(p.sx, p.sy, p.node? 3.2*p.scale : 1.6*p.scale, 0, Math.PI*2);
+    gCtx.fillStyle = p.node ? `rgba(0,255,178,${alpha})` : `rgba(0,234,255,${alpha*0.7})`;
+    gCtx.fill();
+    if(p.node){
+      gCtx.beginPath();
+      gCtx.arc(p.sx,p.sy, 7*p.scale, 0, Math.PI*2);
+      gCtx.strokeStyle = `rgba(0,255,178,${alpha*0.5})`;
+      gCtx.stroke();
+    }
+  });
+  gCtx.beginPath();
+  gCtx.arc(cx,cy,R*0.98,0,Math.PI*2);
+  gCtx.strokeStyle='rgba(0,234,255,0.15)';
+  gCtx.stroke();
+  requestAnimationFrame(drawGlobe);
+}
+drawGlobe();
+
+/* ============ COUNTER ANIMATION ============ */
+function animateCount(el, target, suffix=''){
+  let cur = 0;
+  const step = Math.max(1, target/60);
+  const t = setInterval(()=>{
+    cur += step;
+    if(cur>=target){cur=target; clearInterval(t);}
+    el.textContent = Math.floor(cur).toLocaleString()+suffix;
+  }, 20);
+}
+const statObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animateCount(document.getElementById('cStudents'), 42900, '+');
+      animateCount(document.getElementById('cLabs'), 1280, '+');
+      animateCount(document.getElementById('cCountries'), 16);
+      animateCount(document.getElementById('cUptime'), 99, '%');
+      statObserver.disconnect();
+    }
+  });
+},{threshold:0.4});
+statObserver.observe(document.querySelector('.stat-row'));
+
+/* ============ REVEAL ON SCROLL ============ */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ============ SECURITY GAUGE ============ */
+const gaugeObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const circle = document.getElementById('gaugeCircle');
+      const num = document.getElementById('gaugeNum');
+      const target = 87, circumference = 264;
+      let cur = 0;
+      const t = setInterval(()=>{
+        cur++;
+        circle.style.strokeDashoffset = circumference - (circumference*cur/100);
+        num.textContent = cur+'%';
+        if(cur>=target) clearInterval(t);
+      },14);
+      gaugeObserver.disconnect();
+    }
+  });
+},{threshold:0.4});
+gaugeObserver.observe(document.getElementById('gaugeCircle'));
+
+/* ============ TIMELINE ============ */
+const timelineData = [
+  {title:'Completed "Web App Pentest Range" — Tier 2', time:'2 hours ago'},
+  {title:'New badge earned: Forensics Analyst I', time:'Yesterday'},
+  {title:'Wishlist added: OSINT Recon Simulator', time:'2 days ago'},
+  {title:'Wallet funded: +0.02 ETH', time:'3 days ago'},
+  {title:'Joined CTF: Nightfall Protocol', time:'5 days ago'}
+];
+document.getElementById('timelineList').innerHTML = timelineData.map(t=>`
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div><div class="t-title">${t.title}</div><div class="t-time">${t.time}</div></div>
+  </div>`).join('');
+
+/* ============ TERMINAL TYPEWRITER ============ */
+const termLines = [
+  '> initializing sandbox environment...',
+  '> loading module: network_defense_sim.pkg',
+  '> environment ready. 0 vulnerabilities flagged.',
+  '> awaiting operator input_',
+  '> course progress saved: 68%',
+  '> CTF flag validated: BLACKMARKET{tr41n1ng_c0mpl3t3}',
+  '> generating completion certificate...'
+];
+const termOut = document.getElementById('termOut');
+let lineIdx = 0, charIdx = 0;
+function typeTerm(){
+  if(lineIdx >= termLines.length){ lineIdx = 0; termOut.textContent=''; }
+  const full = termLines.slice(0,lineIdx).join('\\n') + (lineIdx<termLines.length? (lineIdx>0?'\\n':'') + termLines[lineIdx].slice(0,charIdx):'');
+  termOut.textContent = full;
+  charIdx++;
+  if(charIdx > termLines[lineIdx].length){
+    charIdx = 0; lineIdx++;
+    setTimeout(typeTerm, 700);
+  } else {
+    setTimeout(typeTerm, 28);
+  }
+}
+typeTerm();
+
+/* ============ NAV MOBILE ============ */
+document.getElementById('burger').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.remove('open');
+}));
+
+/* ============ DATA: COUNTRIES + CATEGORIES + PRODUCTS ============ */
+const countries = [
+  {name:'United States', code:'US'}, {name:'United Kingdom', code:'UK'}, {name:'Canada', code:'CA'},
+  {name:'Australia', code:'AU'}, {name:'Germany', code:'DE'}, {name:'France', code:'FR'},
+  {name:'Spain', code:'ES'}, {name:'Italy', code:'IT'}, {name:'Japan', code:'JP'},
+  {name:'South Korea', code:'KR'}, {name:'India', code:'IN'}, {name:'Singapore', code:'SG'},
+  {name:'Brazil', code:'BR'}, {name:'Mexico', code:'MX'}, {name:'South Africa', code:'ZA'},
+  {name:'United Arab Emirates', code:'AE'}
+];
+
+const categories = [
+  {name:'Cybersecurity Courses', icon:'graduation-cap'},
+  {name:'Penetration Testing Labs', icon:'terminal'},
+  {name:'Digital Forensics Challenges', icon:'search'},
+  {name:'Proxy & VPNs', icon:'flag'},
+  {name:'Malware Analysis Labs', icon:'bug'},
+  {name:'OSINT Training', icon:'eye'},
+  {name:'Secure Coding Resources', icon:'code'},
+  {name:'Network Defense Simulations', icon:'shield'},
+  {name:'Incident Response Exercises', icon:'siren'}
+];
+
+const templates = [
+  {title:'Web App Pentesting — Basic', cat:1, diff:'Easy', desc:'Foundations of web application testing: recon, common vulnerability classes, and reporting.', tier:'Basic', price:29},
+  {title:'Web App Pentesting — Pro', cat:1, diff:'Medium', desc:'Full guided labs covering auth flaws, injection, and business-logic testing in sandboxes.', tier:'Pro', price:79},
+  {title:'Web App Pentesting — Elite', cat:1, diff:'Hard', desc:'Advanced attack-path chaining, exploit development basics, and a capstone assessment.', tier:'Elite', price:149},
+  {title:'Tax Refund Fullz', cat:2, diff:'Easy', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Basic', price:35},
+  {title:'FAFSA Fullz', cat:2, diff:'Medium', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Pro', price:35},
+  {title:'Online Verification Fullz', cat:2, diff:'Hard', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Elite', price:35},
+  {title:'Proxy & VPNs — Socks5', cat:4, diff:'Easy', desc:'Fast, unlimited bandwidth, 1 year, up to 3 states IP', tier:'Basic', price:18},
+  {title:'Proxy & VPNs — Socks4', cat:4, diff:'Medium', desc:'Fast, unlimited bandwidth, 1 year, up to 3 states IP', tier:'Pro', price:18},
+  {title:'Proxy & VPNs — HTTPS', cat:4, diff:'Hard', desc:'Fast, up to 1 year or usage', tier:'Elite', price:12},
+  {title:'Proxy & VPNs — HTTP', cat:4, diff:'Hard', desc:'Fast, up to 1 year or usage', tier:'Elite', price:12},
+  {title:'Malware Analysis — Basic', cat:4, diff:'Easy', desc:'Static analysis fundamentals in a safe, disposable sandbox environment.', tier:'Basic', price:29},
+  {title:'Malware Analysis — Pro', cat:4, diff:'Medium', desc:'Dynamic analysis and behavior mapping of simulated samples.', tier:'Pro', price:79},
+  {title:'Malware Analysis — Elite', cat:4, diff:'Hard', desc:'Unpacking, deobfuscation basics, and a full reverse-engineering capstone.', tier:'Elite', price:149},
+  {title:'OSINT Training — Basic', cat:5, diff:'Easy', desc:'Open-source recon fundamentals against fictional target profiles.', tier:'Basic', price:29},
+  {title:'OSINT Training — Pro', cat:5, diff:'Medium', desc:'Advanced footprinting, correlation, and reporting techniques.', tier:'Pro', price:79},
+  {title:'OSINT Training — Elite', cat:5, diff:'Hard', desc:'Full engagement simulation from tasking to client-ready report.', tier:'Elite', price:149},
+  {title:'Secure Coding — Basic', cat:6, diff:'Easy', desc:'Core principles of writing safe authentication and input handling code.', tier:'Basic', price:29},
+  {title:'Secure Coding — Pro', cat:6, diff:'Medium', desc:'Threat modeling and secure API design workshops with real code review.', tier:'Pro', price:79},
+  {title:'Network Defense — Basic', cat:7, diff:'Easy', desc:'Firewall and IDS fundamentals using simulated network traffic.', tier:'Basic', price:29},
+  {title:'Network Defense — Pro', cat:7, diff:'Medium', desc:'Tuning detections against staged attack traffic in a lab range.', tier:'Pro', price:79},
+  {title:'Incident Response — Basic', cat:8, diff:'Easy', desc:'Tabletop fundamentals: detection, triage, and communication basics.', tier:'Basic', price:29},
+  {title:'Incident Response — Pro', cat:8, diff:'Medium', desc:'Full simulated breach response from containment through recovery.', tier:'Pro', price:79},
+  {title:'Spy App', cat:8, diff:'Easy', desc:'Monitoring and tracking tools for discreet oversight.', tier:'Basic', price:30}
+];
+
+function seededRand(seed){
+  let x = Math.sin(seed)*10000;
+  return x - Math.floor(x);
+}
+
+function priceFor(usd){
+  return {
+    btc:(usd/62000).toFixed(5),
+    eth:(usd/3400).toFixed(4),
+    usdt:usd,
+    xmr:(usd/165).toFixed(3)
+  };
+}
+
+function diffClass(d){
+  return d==='Easy' ? 'diff-easy' : d==='Hard' ? 'diff-hard' : 'diff-medium';
+}
+
+function generatePurchaseHistoryEntries(count = 50){
+  const currencies = [
+    {code:'BTC', min:0.001, max:0.03},
+    {code:'ETH', min:0.01, max:0.2},
+    {code:'USDT', min:10, max:250},
+    {code:'XMR', min:0.5, max:25}
+  ];
+  return Array.from({length: count}, ()=>{
+    const country = countries[Math.floor(Math.random()*countries.length)];
+    const product = templates[Math.floor(Math.random()*templates.length)];
+    const currency = currencies[Math.floor(Math.random()*currencies.length)];
+    const amount = (currency.min + Math.random()*(currency.max-currency.min)).toFixed(currency.code==='BTC' ? 4 : currency.code==='ETH' ? 2 : currency.code==='USDT' ? 0 : 2);
+    return {title:`${product.title} — ${country.name} Node`, value:`${amount} ${currency.code}`};
+  });
+}
+
+function renderPurchaseHistory(){
+  const pool = generatePurchaseHistoryEntries(50);
+  const visible = pool.slice(0, 4);
+  const container = document.getElementById('purchaseHistoryList');
+  if(container){
+    container.innerHTML = visible.map(item=>`
+      <div class="row-line"><div class="name">${item.title}</div><div class="mono pos">${item.value}</div></div>
+    `).join('');
+  }
+}
+
+renderPurchaseHistory();
+setInterval(renderPurchaseHistory, 30000);
+
+function ratingStars(r){
+  const full = Math.floor(r);
+  return '★'.repeat(full) + '☆'.repeat(5-full);
+}
+
+let productSeq = 0;
+const productRegistry = {};
+function productCard(t, seed, regionLabel){
+  const id = 'p'+(productSeq++);
+  const isFullzItem = /Fullz/i.test(t.title);
+  const displayPrice = isFullzItem
+    ? Math.round(35 + seededRand(seed*7)*20)
+    : t.price;
+  productRegistry[id] = {title:t.title+(regionLabel?' — '+regionLabel+' Node':''), price:displayPrice, tier:t.tier};
+  const price = priceFor(displayPrice);
+  const rating = (4.1 + seededRand(seed*2)*0.9).toFixed(1);
+  const users = Math.floor(400 + seededRand(seed*3)*8000);
+  const cat = categories[t.cat];
+  return `
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff ${diffClass(t.diff)}">${t.tier}</div>
+      <i data-lucide="${cat.icon}"></i>
+    </div>
+    <div class="product-body">
+      <h4>${t.title}${regionLabel? ' — '+regionLabel+' Node':''}</h4>
+      <div class="product-meta">
+        <span class="stars">${ratingStars(rating)}</span>
+        <span>${rating}</span>
+        <span>·</span>
+        <span><i data-lucide="users" style="width:12px;height:12px;vertical-align:-2px;"></i> ${users.toLocaleString()}</span>
+      </div>
+      <div class="product-desc">${t.desc}</div>
+      <div class="price-box">
+        <div>USD <span class="val">$${displayPrice}</span></div>
+        <div>BTC <span class="val">${price.btc}</span></div>
+        <div>ETH <span class="val">${price.eth}</span></div>
+        <div>XMR <span class="val">${price.xmr}</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="addToCart('${id}', this)">Add to Cart</button>
+      <button class="wish-btn" onclick="this.classList.toggle('active')"><i data-lucide="heart" style="width:16px;height:16px;"></i></button>
+    </div>
+  </div>`;
+}
+
+/* ---- country grid ---- */
+const countryGrid = document.getElementById('countryGrid');
+countryGrid.innerHTML = countries.map((c,i)=>`
+  <div class="panel country-card" onclick="openCountry(${i})">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan"></div>
+    <div class="flag-chip">${c.code}</div>
+    <h3>${c.name.toUpperCase()}</h3>
+    <div class="meta">${Math.floor(40+seededRand(i*7)*90)} RESOURCES</div>
+  </div>
+`).join('');
+refreshIcons();
+
+/* ---- category tabs + featured grid ---- */
+const catTabs = document.getElementById('catTabs');
+catTabs.innerHTML = ['All', ...categories.map(c=>c.name)].map((c,i)=>`<button class="tab ${i===0?'active':''}" data-i="${i}">${c}</button>`).join('');
+function renderFeatured(filterIdx){
+  const grid = document.getElementById('featuredGrid');
+  const items = templates.filter(t => filterIdx===0 || t.cat === filterIdx-1).slice(0,9);
+  grid.innerHTML = items.map((t,i)=>productCard(t, i+11)).join('');
+  refreshIcons();
+}
+renderFeatured(0);
+catTabs.addEventListener('click', e=>{
+  const btn = e.target.closest('.tab');
+  if(!btn) return;
+  catTabs.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFeatured(parseInt(btn.dataset.i));
+});
+
+/* ---- services grid ---- */
+const services = [
+  {
+    icon:'code-2', title:'Web Development', priceLabel:'Negotiable', badge:'Custom Quote',
+    desc:'Landing pages, full sites, or web apps — pricing depends on scope, features, and timeline.',
+    fields:[
+      {label:'Project type', type:'select', options:['Landing page','Business website','Web application','E-commerce site','Other']},
+      {label:'Budget range (optional)', type:'text', placeholder:'e.g. $200 - $500'},
+      {label:'Project details', type:'textarea', placeholder:'Tell us what you need built, timeline, and any references.'}
+    ]
+  },
+  {
+    icon:'compass', title:'Hacking Services', priceLabel:'$18', badge:'Per Session',
+    desc:'One-on-one guidance on breaking into or advancing within cybersecurity careers — resume, certs, interview prep.',
+    fields:[
+      {label:'Current experience level', type:'select', options:['Beginner / student','Career changer','1-3 years experience','3+ years experience']},
+      {label:'What do you want to focus on?', type:'textarea', placeholder:'e.g. resume review, certification roadmap, interview prep'}
+    ]
+  },
+  {
+    icon:'presentation', title:'Course Teaching', priceLabel:'$20', badge:'Live / Cohort',
+    desc:'Live instruction or custom curriculum design for teams and individuals across any course topic on the platform.',
+    fields:[
+      {label:'Format', type:'select', options:['1-on-1 live session','Group / cohort','Custom curriculum design']},
+      {label:'Topic of interest', type:'text', placeholder:'e.g. malware analysis, OSINT, secure coding'},
+      {label:'Additional details', type:'textarea', placeholder:'Group size, timeline, or specific goals.'}
+    ]
+  },
+  {
+    icon:'shield-check', title:'Account Recovery', priceLabel:'$15', badge:'Account Hardening',
+    desc:'Help securing accounts and infrastructure you own — 2FA setup, password hygiene audits, phishing-resistance review.',
+    fields:[
+      {label:'What do you need secured?', type:'select', options:['Personal accounts','Small business systems','Website / web app','General consultation']},
+      {label:'Details', type:'textarea', placeholder:'Describe what you would like reviewed or hardened.'}
+    ]
+  }
+];
+const serviceGrid = document.getElementById('servicesGrid');
+serviceGrid.innerHTML = services.map((s,i)=>`
+  <div class="panel product-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="product-thumb">
+      <div class="diff diff-medium">${s.badge}</div>
+      <i data-lucide="${s.icon}"></i>
+    </div>
+    <div class="product-body">
+      <h4>${s.title}</h4>
+      <div class="product-desc">${s.desc}</div>
+      <div class="price-box" style="grid-template-columns:1fr;">
+        <div>Starting at <span class="val">${s.priceLabel}</span></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="buy-btn" onclick="openServiceInquiry(${i})">Request Service</button>
+    </div>
+  </div>
+`).join('');
+refreshIcons();
+
+/* ---- country modal ---- */
+const modal = document.getElementById('countryModal');
+function openCountry(i){
+  const c = countries[i];
+  document.getElementById('modalFlag').textContent = c.code;
+  document.getElementById('modalTitle').textContent = c.name.toUpperCase() + ' NODE';
+  document.getElementById('modalSub').textContent = `${categories.length} training categories · localized course catalog`;
+  const grid = document.getElementById('modalGrid');
+  const items = templates.slice(0,6).map((t,k)=>({t, seed:(i+1)*13+k}));
+  grid.innerHTML = items.map(({t,seed})=>productCard(t, seed, c.name)).join('');
+  refreshIcons();
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+function closeModal(){
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ============ CONFIG ============ */
+const SUPPORT_EMAIL = 'support@yourdomain.com'; // <-- replace with your real support address
+
+/* ============ CART STATE ============ */
+let cart = []; // {id, title, price, tier}
+
+function addToCart(id, btnEl){
+  const item = productRegistry[id];
+  cart.push({...item});
+  updateCartUI();
+  if(btnEl){
+    const original = btnEl.textContent;
+    btnEl.textContent = 'Added ✓';
+    setTimeout(()=>{ btnEl.textContent = original; }, 1200);
+  }
+  openCart();
+}
+
+function removeFromCart(idx){
+  cart.splice(idx,1);
+  updateCartUI();
+}
+
+function cartTotal(){
+  return cart.reduce((sum,i)=>sum+i.price, 0);
+}
+
+function updateCartUI(){
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = cart.length;
+  countEl.style.display = cart.length ? 'flex' : 'none';
+
+  const itemsEl = document.getElementById('cartItems');
+  if(cart.length === 0){
+    itemsEl.innerHTML = '<div class="cart-empty"><i data-lucide="shopping-cart" style="width:36px;height:36px;opacity:0.4;"></i><div style="margin-top:10px;">Your cart is empty.</div></div>';
+    document.getElementById('cartTotalRow').style.display = 'none';
+    document.getElementById('checkoutBtn').style.display = 'none';
+  } else {
+    itemsEl.innerHTML = cart.map((item,idx)=>`
+      <div class="cart-item">
+        <div class="ci-icon"><i data-lucide="book-open"></i></div>
+        <div class="ci-body">
+          <div class="ci-title">${item.title}</div>
+          <div class="ci-sub">${item.tier || 'Course'} tier</div>
+        </div>
+        <div class="ci-price">$${item.price}</div>
+        <button class="ci-remove" onclick="removeFromCart(${idx})"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+    `).join('');
+    document.getElementById('cartTotalRow').style.display = 'flex';
+    document.getElementById('cartTotalVal').textContent = '$'+cartTotal();
+    document.getElementById('checkoutBtn').style.display = 'flex';
+  }
+  refreshIcons();
+}
+updateCartUI();
+
+function openCart(){
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+/* ============ CHECKOUT / PAYMENT ============ */
+const wallets = {
+  btc: {label:'Bitcoin (BTC)', address:'bc1qexampleWALLETaddress0000000demoONLY', rate:62000},
+  eth: {label:'Ethereum (ETH)', address:'0xEXAMPLEwalletADDRESS0000000demoONLY', rate:3400},
+  usdt:{label:'Tether (USDT, TRC20)', address:'TEXAMPLEwalletADDRESS0000000demoONLY', rate:1},
+  xmr: {label:'Monero (XMR)', address:'4EXAMPLEwalletADDRESS0000000000000demoONLY', rate:165}
+};
+let activeCrypto = 'btc';
+let currentOrderRef = '';
+
+function openPaymentModal(){
+  closeCart();
+  const usd = cartTotal();
+  document.getElementById('payUsdAmount').textContent = '$'+usd;
+  currentOrderRef = 'NXS-'+Date.now().toString(36).toUpperCase();
+  renderCryptoAmount(usd);
+  document.getElementById('paymentModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function renderCryptoAmount(usd){
+  const w = wallets[activeCrypto];
+  const amt = (usd / w.rate);
+  const decimals = activeCrypto === 'usdt' ? 2 : 5;
+  document.getElementById('payCryptoAmount').textContent = amt.toFixed(decimals) + ' ' + activeCrypto.toUpperCase();
+  document.getElementById('walletAddress').textContent = w.address;
+}
+document.getElementById('cryptoTabs').addEventListener('click', e=>{
+  const btn = e.target.closest('.crypto-tab');
+  if(!btn) return;
+  document.querySelectorAll('.crypto-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCrypto = btn.dataset.c;
+  renderCryptoAmount(cartTotal());
+});
+document.getElementById('checkoutBtn').addEventListener('click', openPaymentModal);
+document.getElementById('paymentClose').addEventListener('click', ()=>{
+  document.getElementById('paymentModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+document.getElementById('copyWallet').addEventListener('click', ()=>{
+  const text = document.getElementById('walletAddress').textContent;
+  navigator.clipboard?.writeText(text);
+  const btn = document.getElementById('copyWallet');
+  btn.innerHTML = '<i data-lucide="check" style="width:14px;height:14px;"></i>';
+  refreshIcons();
+  setTimeout(()=>{ btn.innerHTML = '<i data-lucide="copy" style="width:14px;height:14px;"></i>'; refreshIcons(); }, 1200);
+});
+
+/* ============ CONFIRMATION FORM ============ */
+document.getElementById('sentPaymentBtn').addEventListener('click', ()=>{
+  document.getElementById('paymentModal').classList.remove('open');
+  document.getElementById('confirmOrderRef').value = currentOrderRef;
+  document.getElementById('confirmFormWrap').style.display = 'block';
+  document.getElementById('confirmSuccessWrap').style.display = 'none';
+  document.getElementById('supportEmailDisplay').textContent = SUPPORT_EMAIL;
+  document.getElementById('confirmModal').classList.add('open');
+});
+document.getElementById('confirmClose').addEventListener('click', ()=>{
+  document.getElementById('confirmModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+document.getElementById('fileDrop').addEventListener('click', ()=> document.getElementById('proofFile').click());
+document.getElementById('proofFile').addEventListener('change', (e)=>{
+  const f = e.target.files[0];
+  document.getElementById('fileNameDisplay').textContent = f ? ('Selected: '+f.name+' — remember to attach it in the email that opens.') : '';
+});
+document.getElementById('sendConfirmBtn').addEventListener('click', ()=>{
+  const email = document.getElementById('confirmEmail').value.trim();
+  if(!email){ document.getElementById('confirmEmail').focus(); return; }
+  const orderLines = cart.map(i=>`- ${i.title} ($${i.price})`).join('%0D%0A');
+  const subject = encodeURIComponent('Payment confirmation — Order '+currentOrderRef);
+  const body =
+    'Order reference: '+currentOrderRef+'%0D%0A'+
+    'Customer email: '+encodeURIComponent(email)+'%0D%0A'+
+    'Payment method: '+activeCrypto.toUpperCase()+'%0D%0A'+
+    'Total: $'+cartTotal()+'%0D%0A%0D%0A'+
+    'Items:%0D%0A'+orderLines+'%0D%0A%0D%0A'+
+    '(Please attach your payment screenshot to this email before sending.)';
+  window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+  document.getElementById('confirmFormWrap').style.display = 'none';
+  document.getElementById('confirmSuccessWrap').style.display = 'block';
+  refreshIcons();
+  cart = [];
+  updateCartUI();
+});
+
+/* ============ SERVICE INQUIRY ============ */
+function openServiceInquiry(idx){
+  const s = services[idx];
+  document.getElementById('serviceModalTitle').textContent = s.title;
+  document.getElementById('serviceModalDesc').textContent = s.desc + ' (' + s.priceLabel + ')';
+  const fieldsWrap = document.getElementById('serviceFormFields');
+  fieldsWrap.innerHTML = s.fields.map((f,i)=>{
+    if(f.type === 'select'){
+      return `<div class="form-field"><label>${f.label}</label><select data-fi="${i}">${f.options.map(o=>`<option>${o}</option>`).join('')}</select></div>`;
+    } else if(f.type === 'textarea'){
+      return `<div class="form-field"><label>${f.label}</label><textarea data-fi="${i}" placeholder="${f.placeholder||''}"></textarea></div>`;
+    }
+    return `<div class="form-field"><label>${f.label}</label><input type="text" data-fi="${i}" placeholder="${f.placeholder||''}"></div>`;
+  }).join('');
+  document.getElementById('serviceModal').dataset.serviceIdx = idx;
+  document.getElementById('serviceModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+document.getElementById('serviceClose').addEventListener('click', ()=>{
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+document.getElementById('sendServiceBtn').addEventListener('click', ()=>{
+  const idx = parseInt(document.getElementById('serviceModal').dataset.serviceIdx);
+  const s = services[idx];
+  const email = document.getElementById('serviceEmail').value.trim();
+  if(!email){ document.getElementById('serviceEmail').focus(); return; }
+  const inputs = document.querySelectorAll('#serviceFormFields [data-fi]');
+  let details = '';
+  inputs.forEach(inp=>{
+    const label = s.fields[parseInt(inp.dataset.fi)].label;
+    details += label+': '+inp.value+'%0D%0A';
+  });
+  const subject = encodeURIComponent('Service request — '+s.title);
+  const body = 'Requested service: '+s.title+'%0D%0A'+'Customer email: '+encodeURIComponent(email)+'%0D%0A%0D%0A'+details;
+  window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow='';
+});
+
+/* close checkout-type modals on backdrop click */
+['paymentModal','confirmModal','serviceModal'].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener('click', e=>{ if(e.target===el){ el.classList.remove('open'); document.body.style.overflow=''; } });
+});
+</script>
+
+</body></html>
