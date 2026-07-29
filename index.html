@@ -923,10 +923,12 @@ const templates = [
   {title:'Tax Refund Fullz', cat:2, diff:'Easy', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Basic', price:35},
   {title:'FAFSA Fullz', cat:2, diff:'Medium', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Pro', price:35},
   {title:'Online Verification Fullz', cat:2, diff:'Hard', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Elite', price:35},
-  {title:'Proxy & VPNs — Socks5', cat:4, diff:'Easy', desc:'Fast, unlimited bandwidth, 1 year, up to 3 states IP', tier:'Basic', price:18},
-  {title:'Proxy & VPNs — Socks4', cat:4, diff:'Medium', desc:'Fast, unlimited bandwidth, 1 year, up to 3 states IP', tier:'Pro', price:18},
-  {title:'Proxy & VPNs — HTTPS', cat:4, diff:'Hard', desc:'Fast, up to 1 year or usage', tier:'Elite', price:12},
-  {title:'Proxy & VPNs — HTTP', cat:4, diff:'Hard', desc:'Fast, up to 1 year or usage', tier:'Elite', price:12},
+  {title:'Proxy & VPNs — Socks5', cat:4, diff:'Easy', desc:'Fast Socks5 proxy with unlimited bandwidth, 1 year access, multiple locations.', tier:'Basic', price:18},
+  {title:'Proxy & VPNs — Socks4', cat:4, diff:'Medium', desc:'Reliable Socks4 proxy with stable connections and optional dedicated IP.', tier:'Pro', price:18},
+  {title:'Proxy & VPNs — HTTPS', cat:4, diff:'Hard', desc:'Secure HTTPS proxy service with strong privacy and multi-country routing.', tier:'Elite', price:12},
+  {title:'Proxy & VPNs — HTTP', cat:4, diff:'Hard', desc:'HTTP proxy access with flexible session options and broad compatibility.', tier:'Elite', price:12},
+  {title:'Proxy & VPNs — Residential Pool', cat:4, diff:'Medium', desc:'Rotating residential IPs for high-anonymity browsing and scraping.', tier:'Pro', price:25},
+  {title:'Proxy & VPNs — Dedicated IP', cat:4, diff:'Hard', desc:'Private proxy endpoint with guaranteed dedicated IP address.', tier:'Elite', price:38},
   {title:'Malware Analysis — Basic', cat:4, diff:'Easy', desc:'Static analysis fundamentals in a safe, disposable sandbox environment.', tier:'Basic', price:29},
   {title:'Malware Analysis — Pro', cat:4, diff:'Medium', desc:'Dynamic analysis and behavior mapping of simulated samples.', tier:'Pro', price:79},
   {title:'Malware Analysis — Elite', cat:4, diff:'Hard', desc:'Unpacking, deobfuscation basics, and a full reverse-engineering capstone.', tier:'Elite', price:149},
@@ -1271,10 +1273,10 @@ document.getElementById('cartOverlay').addEventListener('click', closeCart);
 
 /* ============ CHECKOUT / PAYMENT ============ */
 const wallets = {
-  btc: {label:'Bitcoin (BTC)', address:'bc1qexampleWALLETaddress0000000demoONLY', rate:62000},
-  eth: {label:'Ethereum (ETH)', address:'0xEXAMPLEwalletADDRESS0000000demoONLY', rate:3400},
-  usdt:{label:'Tether (USDT, TRC20)', address:'TEXAMPLEwalletADDRESS0000000demoONLY', rate:1},
-  xmr: {label:'Monero (XMR)', address:'4EXAMPLEwalletADDRESS0000000000000demoONLY', rate:165}
+  btc: {label:'Bitcoin (BTC)', address:'1HrYHU3FeKcXk7k2bNNCLkoNNh1CHgAvit', rate:62000},
+  eth: {label:'Ethereum (ETH)', address:'0x12ce77d5e99bff1989da453fc79bb3d896e4e864', rate:3400},
+  usdt:{label:'Tether (USDT, TRC20)', address:'TS7qpe31ZBGV3o6RGQFFpvSbm6pCn4En48', rate:1},
+  xmr: {label:'Bitcoin BEP20 (BTC-BEP20)', address:'0x12ce77d5e99bff1989da453fc79bb3d896e4e864', rate:62000}
 };
 let activeCrypto = 'btc';
 let currentOrderRef = '';
