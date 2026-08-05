@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- SECURITY HEADERS -->
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.gstatic.com; font-src https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.gstatic.com; font-src https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="X-Frame-Options" content="DENY">
@@ -347,7 +347,7 @@
     
       <div class="row-line"><div class="name">Secure Coding — Basic — South Africa Node</div><div class="mono pos">7.74 XMR</div></div>
     
-      <div class="row-line"><div class="name">Web App Pentesting — Elite — Singapore Node</div><div class="mono pos">22.39 XMR</div></div>
+<div class="row-line"><div class="name">Outlier accounts — Singapore Node</div><div class="mono pos">22.39 XMR</div></div>
     
       <div class="row-line"><div class="name">Malware Analysis — Basic — Germany Node</div><div class="mono pos">240 USDT</div></div>
     </div>
@@ -428,9 +428,7 @@
         <div class="card panel reveal">
           <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
           <h3><i data-lucide="bell"></i> Notifications</h3>
-          <div class="notif"><i data-lucide="alert-triangle"></i> New CTF season starts in 3 days.</div>
-          <div class="notif"><i data-lucide="check-circle"></i> Forensics Lab #12 graded: 94/100.</div>
-          <div class="notif"><i data-lucide="download"></i> Course certificate ready to download.</div>
+          <div id="notifList"><div class="notif"><i data-lucide="shopping-bag"></i> Loading live purchases...</div></div>
         </div>
 
         <div class="card panel reveal">
@@ -562,7 +560,7 @@
     <div id="confirmFormWrap">
       <div class="eyebrow" style="margin-bottom:8px;">Almost done</div>
       <h2 style="font-size:24px;margin-bottom:6px;">Confirm your order</h2>
-      <p style="color:var(--muted);font-size:14px;margin-bottom:22px;">Enter your email and attach a screenshot of your payment. This opens your email app with your order details pre-filled — just attach the screenshot before sending.</p>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:22px;">Enter your email and attach a screenshot of your payment. Submitting sends your order details and proof directly to our support inbox.</p>
 
       <div class="form-field">
         <label>Email address</label>
@@ -576,24 +574,24 @@
         <label>Attach payment screenshot</label>
         <div class="file-drop" id="fileDrop">
           <i data-lucide="upload" aria-hidden="true"></i><br>
-          Click to choose a screenshot (attach it in your email app when it opens)
+          Click to choose a payment screenshot (attached automatically on submit)
         </div>
         <input type="file" id="proofFile" accept="image/*" style="display:none;">
         <div class="file-name" id="fileNameDisplay"></div>
       </div>
       <div class="note-box">
         <i data-lucide="mail" aria-hidden="true"></i>
-        <span>This will open your default email app addressed to <b id="supportEmailDisplay">support@yourdomain.com</b> with your order pre-filled. Please attach the screenshot before hitting send — browsers can't attach files automatically.</span>
+        <span>Your order will be submitted directly to <b id="supportEmailDisplay">info.oricon@proton.me</b> along with your payment screenshot. No email app needed.</span>
       </div>
       <button class="btn btn-primary" id="sendConfirmBtn" style="width:100%;justify-content:center;">
-        <i data-lucide="send" style="width:15px;height:15px;"></i> Open Email to Send Confirmation
+        <i data-lucide="send" style="width:15px;height:15px;"></i> Submit Payment Proof
       </button>
     </div>
     <div id="confirmSuccessWrap" style="display:none;">
       <div class="success-box">
         <i data-lucide="check-circle-2" aria-hidden="true"></i>
-        <h2 style="font-size:22px;margin-bottom:8px;">Email app opened</h2>
-        <p style="color:var(--muted);font-size:14px;">Attach your payment screenshot and hit send in your email app. We'll confirm your order once it's received.</p>
+        <h2 style="font-size:22px;margin-bottom:8px;">Payment proof submitted</h2>
+        <p style="color:var(--muted);font-size:14px;">Your order confirmation and screenshot have been sent directly to our support inbox. We'll verify your payment and activate your order shortly.</p>
       </div>
     </div>
   </div>
@@ -614,6 +612,26 @@
     <button class="btn btn-primary" id="sendServiceBtn" style="width:100%;justify-content:center;">
       <i data-lucide="send" style="width:15px;height:15px;"></i> Send Request
     </button>
+  </div>
+</div>
+
+<!-- CHAT BOX BOT WIDGET -->
+<div class="chat-toggle" id="chatToggle" title="Chat with ARIA">
+  <i data-lucide="message-circle" aria-hidden="true"></i>
+</div>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="ARIA support chat">
+  <div class="chat-head">
+    <div class="chat-head-avatar">A</div>
+    <div>
+      <div class="chat-head-title">ARIA · AI Guide</div>
+      <div class="chat-head-sub">online — replies instantly</div>
+    </div>
+    <button class="chat-close" id="chatClose"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-foot">
+    <input type="text" id="chatInput" placeholder="Ask about orders, services, crypto..." autocomplete="off">
+    <button id="chatSend"><i data-lucide="send" style="width:16px;height:16px;"></i></button>
   </div>
 </div>
 
@@ -831,7 +849,7 @@ const gaugeObserver = new IntersectionObserver((entries)=>{
     if(e.isIntersecting){
       const circle = document.getElementById('gaugeCircle');
       const num = document.getElementById('gaugeNum');
-      const target = 87, circumference = 264;
+const target = 100, circumference = 264;
       let cur = 0;
       const t = setInterval(()=>{
         cur++;
@@ -917,9 +935,8 @@ const categories = [
 ];
 
 const templates = [
-  {title:'Web App Pentesting — Basic', cat:1, diff:'Easy', desc:'Foundations of web application testing: recon, common vulnerability classes, and reporting.', tier:'Basic', price:29},
-  {title:'Web App Pentesting — Pro', cat:1, diff:'Medium', desc:'Full guided labs covering auth flaws, injection, and business-logic testing in sandboxes.', tier:'Pro', price:79},
-  {title:'Web App Pentesting — Elite', cat:1, diff:'Hard', desc:'Advanced attack-path chaining, exploit development basics, and a capstone assessment.', tier:'Elite', price:149},
+{title:'Handshake accounts', cat:1, diff:'Medium', desc:'Full guided labs covering auth flaws, injection, and business-logic testing in sandboxes.', tier:'Handshake accounts', price:79},
+  {title:'Outlier accounts', cat:1, diff:'Hard', desc:'Advanced attack-path chaining, exploit development basics, and a capstone assessment.', tier:'Outlier accounts', price:149},
   {title:'Tax Refund Fullz', cat:2, diff:'Easy', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Basic', price:35},
   {title:'FAFSA Fullz', cat:2, diff:'Medium', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Pro', price:35},
   {title:'Online Verification Fullz', cat:2, diff:'Hard', desc:'Fullz are sold in batches of 50, Verified fullz', tier:'Elite', price:35},
@@ -995,6 +1012,69 @@ function renderPurchaseHistory(){
 renderPurchaseHistory();
 setInterval(renderPurchaseHistory, 30000);
 
+/* ============ LIVE PURCHASE NOTIFICATIONS ============ */
+const notifCountries = [
+  {city:'Nairobi', country:'Kenya', flag:'🇰🇪'},
+  {city:'Austin, TX', country:'USA', flag:'🇺🇸'},
+  {city:'Mumbai', country:'India', flag:'🇮🇳'},
+  {city:'Dublin', country:'Ireland', flag:'🇮🇪'},
+  {city:'São Paulo', country:'Brazil', flag:'🇧🇷'},
+  {city:'Berlin', country:'Germany', flag:'🇩🇪'},
+  {city:'Tokyo', country:'Japan', flag:'🇯🇵'},
+  {city:'Dubai', country:'UAE', flag:'🇦🇪'},
+  {city:'Accra', country:'Ghana', flag:'🇬🇭'},
+  {city:'Rome', country:'Italy', flag:'🇮🇹'},
+  {city:'Paris', country:'France', flag:'🇫🇷'},
+  {city:'London', country:'UK', flag:'🇬🇧'},
+  {city:'Madrid', country:'Spain', flag:'🇪🇸'},
+  {city:'Laguna', country:'Nigeria', flag:'🇳🇬'},
+  {city:'Stockholm', country:'Sweden', flag:'🇸🇪'},
+  {city:'Sydney', country:'Australia', flag:'🇦🇺'}
+];
+const notifFirstNames = ['Brian','Faith','Kevin','Mercy','Dennis','Cynthia','Samuel','Grace','Peter','Esther','Jake','Priya','Liam','Lucas','Hannah','Yuki','Fatima','Kwame','Sofia','Chloe','Oliver','Maria','Chen','Amara','Sven','Leo','Amina','David','Zainab','Tom'];
+const notifLastNames = ['Otieno','Wanjiru','Kipchoge','Achieng','Muthoni','Njeri','Kamau','Wambui','Omondi','Akinyi','Miller','Sharma','O\'Connor','Silva','Weber','Tanaka','Al-Sayed','Mensah','Rossi','Dubois','Smith','Gonzalez','Wei','Okafor','Johansson','Martin','Hassan','Kimani','Malik','Brown'];
+const notifIcons = ['shopping-bag','credit-card','package','zap','shield-check','download'];
+
+function randomNotifName(){
+  const first = notifFirstNames[Math.floor(Math.random()*notifFirstNames.length)];
+  const last = notifLastNames[Math.floor(Math.random()*notifLastNames.length)];
+  return `${first} ${last}`;
+}
+
+function generateNotifications(count){
+  return Array.from({length: count}, ()=>{
+    const loc = notifCountries[Math.floor(Math.random()*notifCountries.length)];
+    const product = templates[Math.floor(Math.random()*templates.length)];
+    const icon = notifIcons[Math.floor(Math.random()*notifIcons.length)];
+    return {icon, text:`${randomNotifName()} · ${loc.flag} ${loc.city}, ${loc.country} purchased ${product.title}`};
+  });
+}
+
+function renderNotifications(){
+  const box = document.getElementById('notifList');
+  if(!box) return;
+  box.innerHTML = generateNotifications(3).map(n=>`
+    <div class="notif"><i data-lucide="${n.icon}"></i> <span>${sanitizeHTML(n.text)} — just now</span></div>
+  `).join('');
+  refreshIcons();
+}
+renderNotifications();
+setInterval(renderNotifications, 12000);
+
+/* ============ TAX REFUND PROMO (today until 12:00 EAT tomorrow) ============ */
+function eatNow(){
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset()*60000;
+  return new Date(utc + 3*3600000); // East Africa Time (UTC+3)
+}
+function isTaxRefundPromo(){
+  const eat = eatNow();
+  const deadline = new Date(eat);
+  deadline.setDate(deadline.getDate()+1);
+  deadline.setHours(12,0,0,0);
+  return eat < deadline;
+}
+
 function ratingStars(r){
   const full = Math.floor(r);
   return '★'.repeat(full) + '☆'.repeat(5-full);
@@ -1005,9 +1085,12 @@ const productRegistry = {};
 function productCard(t, seed, regionLabel){
   const id = 'p'+(productSeq++);
   const isFullzItem = /Fullz/i.test(t.title);
-  const displayPrice = isFullzItem
-    ? Math.round(35 + seededRand(seed*7)*20)
-    : t.price;
+  const isTaxRefundItem = /Tax Refund/i.test(t.title);
+  const displayPrice = isTaxRefundItem
+    ? (isTaxRefundPromo() ? 53 : t.price)
+    : isFullzItem
+      ? Math.round(35 + seededRand(seed*7)*20)
+      : t.price;
   productRegistry[id] = {title:sanitizeHTML(t.title+(regionLabel?' — '+regionLabel+' Node':'')), price:displayPrice, tier:t.tier};
   const price = priceFor(displayPrice);
   const rating = (4.1 + seededRand(seed*2)*0.9).toFixed(1);
@@ -1188,7 +1271,7 @@ function closeModal(){
 }
 
 /* ============ CONFIG ============ */
-const SUPPORT_EMAIL = 'support@yourdomain.com'; // <-- replace with your real support address
+const SUPPORT_EMAIL = 'info.oricon@proton.me'; // support address for direct order/service submissions
 
 /* ============ CART STATE ============ */
 let cart = []; // {id, title, price, tier}
@@ -1352,13 +1435,13 @@ document.getElementById('fileDrop').addEventListener('click', ()=> document.getE
 document.getElementById('proofFile').addEventListener('change', (e)=>{
   const f = e.target.files[0];
   if (f && f.type.startsWith('image/')) {
-    document.getElementById('fileNameDisplay').textContent = 'Selected: '+sanitizeHTML(f.name)+' — remember to attach it in the email that opens.';
+    document.getElementById('fileNameDisplay').textContent = 'Selected: '+sanitizeHTML(f.name)+' — will be attached automatically on submit.';
   } else {
     document.getElementById('fileNameDisplay').textContent = 'Invalid file type. Please select an image.';
   }
 });
 
-document.getElementById('sendConfirmBtn').addEventListener('click', ()=>{
+document.getElementById('sendConfirmBtn').addEventListener('click', async ()=>{
   const email = document.getElementById('confirmEmail').value.trim();
   if (!isValidEmail(email)) {
     secureLog('Invalid email format', 'warn');
@@ -1366,21 +1449,46 @@ document.getElementById('sendConfirmBtn').addEventListener('click', ()=>{
     return;
   }
   const sanitizedEmail = sanitizeEmail(email);
-  const orderLines = cart.map(i=>`- ${i.title} ($${i.price})`).join('%0D%0A');
-  const subject = encodeURIComponent('Payment confirmation — Order '+currentOrderRef);
-  const body =
-    'Order reference: '+currentOrderRef+'%0D%0A'+
-    'Customer email: '+encodeURIComponent(sanitizedEmail)+'%0D%0A'+
-    'Payment method: '+activeCrypto.toUpperCase()+'%0D%0A'+
-    'Total: $'+cartTotal()+'%0D%0A%0D%0A'+
-    'Items:%0D%0A'+orderLines+'%0D%0A%0D%0A'+
-    '(Please attach your payment screenshot to this email before sending.)';
-  window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
-  document.getElementById('confirmFormWrap').style.display = 'none';
-  document.getElementById('confirmSuccessWrap').style.display = 'block';
+  const btn = document.getElementById('sendConfirmBtn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<i data-lucide="loader" style="width:15px;height:15px;" class="spin"></i> Sending...';
   refreshIcons();
-  cart = [];
-  updateCartUI();
+
+  const proofFile = document.getElementById('proofFile').files[0];
+  const formData = new FormData();
+  formData.append('_subject', 'Payment confirmation — Order '+currentOrderRef);
+  formData.append('_template', 'table');
+  formData.append('_captcha', 'false');
+  formData.append('Order reference', currentOrderRef);
+  formData.append('Customer email', sanitizedEmail);
+  formData.append('Payment method', activeCrypto.toUpperCase());
+  formData.append('Total (USD)', '$'+cartTotal());
+  cart.forEach(i=>{
+    formData.append('Item', `${i.title} ($${i.price})`);
+  });
+  if (proofFile) {
+    formData.append('Payment screenshot', proofFile);
+  }
+
+  try {
+    const res = await fetch('https://formsubmit.co/'+SUPPORT_EMAIL, {
+      method: 'POST',
+      body: formData
+    });
+    if (!res.ok) throw new Error('HTTP '+res.status);
+    document.getElementById('confirmFormWrap').style.display = 'none';
+    document.getElementById('confirmSuccessWrap').style.display = 'block';
+    refreshIcons();
+    cart = [];
+    updateCartUI();
+  } catch(err) {
+    secureLog('Direct submit failed: '+err.message, 'error');
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+    refreshIcons();
+    document.getElementById('fileNameDisplay').textContent = 'Submission failed. Please check your connection and try again.';
+  }
 });
 
 /* ============ SERVICE INQUIRY ============ */
@@ -1411,7 +1519,7 @@ document.getElementById('serviceClose').addEventListener('click', ()=>{
   document.body.style.overflow='';
 });
 
-document.getElementById('sendServiceBtn').addEventListener('click', ()=>{
+document.getElementById('sendServiceBtn').addEventListener('click', async ()=>{
   const idx = parseInt(document.getElementById('serviceModal').dataset.serviceIdx);
   if (idx < 0 || idx >= services.length) {
     secureLog('Invalid service index', 'warn');
@@ -1426,16 +1534,38 @@ document.getElementById('sendServiceBtn').addEventListener('click', ()=>{
   }
   const sanitizedEmail = sanitizeEmail(email);
   const inputs = document.querySelectorAll('#serviceFormFields [data-fi]');
-  let details = '';
+  const btn = document.getElementById('sendServiceBtn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<i data-lucide="loader" style="width:15px;height:15px;" class="spin"></i> Sending...';
+  refreshIcons();
+
+  const formData = new FormData();
+  formData.append('_subject', 'Service request — '+s.title);
+  formData.append('_template', 'table');
+  formData.append('_captcha', 'false');
+  formData.append('Requested service', s.title);
+  formData.append('Customer email', sanitizedEmail);
   inputs.forEach(inp=>{
     const label = s.fields[parseInt(inp.dataset.fi)].label;
-    details += label+': '+encodeURIComponent(inp.value)+'%0D%0A';
+    formData.append(label, inp.value);
   });
-  const subject = encodeURIComponent('Service request — '+s.title);
-  const body = 'Requested service: '+s.title+'%0D%0A'+'Customer email: '+encodeURIComponent(sanitizedEmail)+'%0D%0A%0D%0A'+details;
-  window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
-  document.getElementById('serviceModal').classList.remove('open');
-  document.body.style.overflow='';
+
+  try {
+    const res = await fetch('https://formsubmit.co/'+SUPPORT_EMAIL, {
+      method: 'POST',
+      body: formData
+    });
+    if (!res.ok) throw new Error('HTTP '+res.status);
+    document.getElementById('serviceModal').classList.remove('open');
+    document.body.style.overflow='';
+  } catch(err) {
+    secureLog('Service submit failed: '+err.message, 'error');
+    document.body.style.overflow='';
+  }
+  btn.disabled = false;
+  btn.innerHTML = originalHTML;
+  refreshIcons();
 });
 
 /* close checkout-type modals on backdrop click */
@@ -1443,6 +1573,81 @@ document.getElementById('sendServiceBtn').addEventListener('click', ()=>{
   const el = document.getElementById(id);
   el.addEventListener('click', e=>{ if(e.target===el){ el.classList.remove('open'); document.body.style.overflow=''; } });
 });
+
+/* ============ CHAT BOX BOT ============ */
+const chatToggle = document.getElementById('chatToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatCloseBtn = document.getElementById('chatClose');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+function chatMsg(text, who){
+  const el = document.createElement('div');
+  el.className = 'chat-msg ' + (who === 'user' ? 'user' : 'bot');
+  el.textContent = text;
+  chatBody.appendChild(el);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function chatTyping(show){
+  let typing = document.getElementById('chatTyping');
+  if(!show){ if(typing) typing.remove(); return; }
+  if(typing) return;
+  typing = document.createElement('div');
+  typing.className = 'chat-typing';
+  typing.id = 'chatTyping';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatBody.appendChild(typing);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+const chatKnowledge = [
+  {keys:['order','purchase','buy','payment','proof','screenshot','confirm'], reply:'To confirm a payment: add items to cart, go to checkout, pick a crypto rail, then click "I\'ve Sent Payment". Attach a screenshot of the transaction — it is submitted directly to our support inbox.'},
+  {keys:['crypto','btc','bitcoin','eth','ethereum','usdt','xmr','monero','pay','wallet'], reply:'We accept BTC, ETH, USDT and XMR. Checkout generates a wallet address — send the exact amount shown, then confirm with a screenshot of the transfer.'},
+  {keys:['service','hacking','course','teach','recovery','web dev'], reply:'We offer Web Development, Hacking career guidance, Course Teaching, and Account Recovery. Scroll to the Services section and hit "Request Service" to send details directly.'},
+  {keys:['shipping','delivery','download','access','activate','activation'], reply:'Orders are verified manually after payment. Once your proof is received, course/lab access is activated and delivered to your email.'},
+  {keys:['email','contact','support','human','agent'], reply:'For anything else, email us at info.oricon@proton.me or use the site forms — we typically reply within 24 hours.'},
+  {keys:['price','cost','discount','refund','expensive'], reply:'Prices are listed per item in USD with live crypto conversion. Refunds are handled case-by-case after review of the transaction proof.'},
+  {keys:['hello','hi','hey','yo','sup','good morning','good evening'], reply:'Hey operator! I\'m ARIA, your AI guide. Ask me about payments, crypto, services, delivery, or contact info.'}
+];
+
+function chatReply(text){
+  const t = text.toLowerCase();
+  if(t.length < 3) return 'How can I help you today, operator?';
+  for(const item of chatKnowledge){
+    if(item.keys.some(k => t.includes(k))) return item.reply;
+  }
+  return 'I\'m not sure about that one. Try asking about payments, crypto, services, delivery, or contact — or email info.oricon@proton.me for human support.';
+}
+
+function chatSendMsg(){
+  const text = chatInput.value.trim();
+  if(!text) return;
+  chatInput.value = '';
+  chatMsg(text, 'user');
+  chatTyping(true);
+  setTimeout(()=>{
+    chatTyping(false);
+    chatMsg(chatReply(text), 'bot');
+  }, 700 + Math.random()*500);
+}
+
+chatToggle.addEventListener('click', ()=>{
+  const open = chatPanel.classList.toggle('open');
+  chatToggle.style.display = open ? 'none' : 'flex';
+  if(open && !chatBody.children.length){
+    chatMsg('Welcome to BLACK::MARKET. I\'m ARIA — ask me about payments, crypto, services, or delivery.', 'bot');
+  }
+  chatInput.focus();
+});
+chatCloseBtn.addEventListener('click', ()=>{
+  chatPanel.classList.remove('open');
+  chatToggle.style.display = 'flex';
+});
+chatSend.addEventListener('click', chatSendMsg);
+chatInput.addEventListener('keydown', e=>{ if(e.key==='Enter') chatSendMsg(); });
+refreshIcons();
 
 
 </script>
