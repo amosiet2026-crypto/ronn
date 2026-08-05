@@ -581,7 +581,7 @@ section{position:relative;z-index:3;}
   border-bottom:1px solid var(--border);
 }
 .product-thumb i{width:44px;height:44px;color:var(--cyan);filter:drop-shadow(0 0 10px rgba(0,234,255,0.6));}
-.product-thumb img.product-img{width:48px;height:48px;object-fit:contain;border-radius:12px;}
+.product-thumb img.product-img{width:100%;height:150px;object-fit:cover;object-position:center;border-radius:0;display:block;}
 .product-thumb .diff{
   position:absolute; top:12px; right:12px; font-family:var(--mono); font-size:10px; letter-spacing:0.1em;
   padding:4px 10px; border-radius:20px; text-transform:uppercase; font-weight:700;
