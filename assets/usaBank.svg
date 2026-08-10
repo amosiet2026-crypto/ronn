@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <rect width="100%" height="100%" fill="#0b1320"/>
+  <rect x="20" y="20" width="560" height="320" rx="8" fill="#071428" stroke="#0de4ff" stroke-width="2"/>
+  <text x="40" y="70" fill="#fff" font-family="Arial, sans-serif" font-size="28">USA Bank</text>
+  <text x="40" y="110" fill="#9bdcff" font-family="monospace" font-size="18">Account: •••• 1234</text>
+  <text x="40" y="140" fill="#9bdcff" font-family="monospace" font-size="18">Routing: 021000021</text>
+  <rect x="40" y="180" width="520" height="120" fill="#021017" rx="6"/>
+  <text x="50" y="210" fill="#9bdcff" font-family="monospace" font-size="14">01/08 Deposit     +$1,200.00</text>
+  <text x="50" y="235" fill="#9bdcff" font-family="monospace" font-size="14">01/06 Withdrawal  -$75.00</text>
+  <text x="50" y="260" fill="#9bdcff" font-family="monospace" font-size="14">01/02 Payment     -$120.00</text>
+</svg>

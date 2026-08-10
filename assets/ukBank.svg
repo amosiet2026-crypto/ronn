@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <rect width="100%" height="100%" fill="#081126"/>
+  <rect x="20" y="20" width="560" height="320" rx="8" fill="#071829" stroke="#ffd700" stroke-width="2"/>
+  <text x="40" y="70" fill="#fff" font-family="Arial, sans-serif" font-size="28">UK Bank</text>
+  <text x="40" y="110" fill="#ffeaa7" font-family="monospace" font-size="18">IBAN: GB29 NWBK 6016 1331 9268 19</text>
+  <rect x="40" y="150" width="520" height="150" fill="#071217" rx="6"/>
+  <text x="50" y="185" fill="#ffeaa7" font-family="monospace" font-size="14">01/08 Salary     +£2,200.00</text>
+  <text x="50" y="210" fill="#ffeaa7" font-family="monospace" font-size="14">01/05 Grocery    -£65.00</text>
+  <text x="50" y="235" fill="#ffeaa7" font-family="monospace" font-size="14">01/02 Rent       -£850.00</text>
+</svg>

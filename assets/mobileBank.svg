@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="720" viewBox="0 0 360 720">
+  <rect width="100%" height="100%" fill="#071426"/>
+  <rect x="16" y="40" width="328" height="640" rx="24" fill="#071623" stroke="#00eaff" stroke-width="2"/>
+  <text x="40" y="110" fill="#fff" font-family="Arial, sans-serif" font-size="20">Mobile Bank</text>
+  <text x="40" y="150" fill="#9bdcff" font-family="monospace" font-size="16">Balance: $1,420.50</text>
+  <rect x="30" y="180" width="300" height="380" fill="#031019" rx="8"/>
+  <text x="40" y="210" fill="#9bdcff" font-family="monospace" font-size="14">01/08  Deposit     +$1,200.00</text>
+  <text x="40" y="235" fill="#9bdcff" font-family="monospace" font-size="14">01/06  Coffee      -$4.50</text>
+  <text x="40" y="260" fill="#9bdcff" font-family="monospace" font-size="14">01/05  Uber        -$12.00</text>
+</svg>

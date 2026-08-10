@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <rect width="100%" height="100%" fill="#081226"/>
+  <rect x="20" y="20" width="560" height="320" rx="8" fill="#071829" stroke="#f0f0f0" stroke-width="2"/>
+  <text x="40" y="70" fill="#fff" font-family="Arial, sans-serif" font-size="24">Canada Driving License</text>
+  <text x="40" y="110" fill="#9bdcff" font-family="monospace" font-size="16">Name: ALEX CANADA</text>
+  <text x="40" y="135" fill="#9bdcff" font-family="monospace" font-size="16">DOB: 03/03/1993</text>
+  <rect x="40" y="170" width="200" height="110" fill="#021017" rx="6"/>
+  <text x="50" y="210" fill="#9bdcff" font-family="monospace" font-size="14">Licence No: CAN-456789</text>
+</svg>
