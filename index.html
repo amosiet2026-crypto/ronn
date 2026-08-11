@@ -1378,7 +1378,7 @@ const wallets = {
   btc: {label:'Bitcoin (BTC)', address:'1HrYHU3FeKcXk7k2bNNCLkoNNh1CHgAvit', rate:62000},
   eth: {label:'Ethereum (ETH)', address:'0x12ce77d5e99bff1989da453fc79bb3d896e4e864', rate:3400},
   usdt:{label:'USDT (TRON)', address:'TS7qpe31ZBGV3o6RGQFFpvSbm6pCn4En48', rate:1},
-  buid: {label:'Binance ID (BUID)', address:'465822158', rate:62000}
+  buid: {label:'Binance ID (BUID)', address:'465822158', rate:1}
 };
 let activeCrypto = 'btc';
 let currentOrderRef = '';
@@ -1399,9 +1399,13 @@ function openPaymentModal(){
 
 function renderCryptoAmount(usd){
   const w = wallets[activeCrypto];
-  const amt = (usd / w.rate);
-  const decimals = activeCrypto === 'usdt' ? 2 : 5;
-  document.getElementById('payCryptoAmount').textContent = amt.toFixed(decimals) + ' ' + activeCrypto.toUpperCase();
+  if(activeCrypto === 'buid'){
+    document.getElementById('payCryptoAmount').textContent = usd + ' ' + activeCrypto.toUpperCase();
+  } else {
+    const amt = (usd / w.rate);
+    const decimals = activeCrypto === 'usdt' ? 2 : 5;
+    document.getElementById('payCryptoAmount').textContent = amt.toFixed(decimals) + ' ' + activeCrypto.toUpperCase();
+  }
   document.getElementById('walletAddress').textContent = w.address;
 }
 
