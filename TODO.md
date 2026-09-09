@@ -15,7 +15,7 @@
 - [x] Show person name, city, country, and random product purchased
 
 ## Task 4: Tax Refund promo pricing
-- [x] Tax Refund Fullz priced at $53 today, reverts to original at 12:00 PM EAT tomorrow
+- [x] Tax Refund Fullz priced at $39 today, reverts to original at 12:00 PM EAT tomorrow
 
 ## Task 5: iOS Liquid Glass product cards
 - [x] `.product-card` nice frosted-glass gradient, blur(28px) saturate(180%), rounded 24px, inner highlight
