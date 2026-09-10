@@ -961,7 +961,7 @@ const templates = [
   {title:'UK Bank — Premier Statement', cat:1, diff:'Medium', desc:'Authentic UK bank statement with IBAN details, branch information, and premium UK banking branding.', tier:'Premium', price:26, img:'assets/ukBank.svg'},
   {title:'Bank Mobile — App Snapshot', cat:2, diff:'Easy', desc:'A mobile banking screen with balance overview, recent transactions, and modern app-style interface elements.', tier:'Mobile', price:20, img:'assets/mobileBank.svg'},
   {title:'Credit Karma — Report', cat:3, diff:'Medium', desc:'Credit Karma-style financial report with credit score summary, account alerts, and membership details.', tier:'Credit Karma', price:28, img:'assets/creditKarma.svg'},
-  {title:'Tax Refund Fullz', cat:4, diff:'Easy', desc:'Fullz sold in batches of 50; verified batches.', tier:'Basic', price:39},
+  {title:'Tax Refund Fullz', cat:4, diff:'Easy', desc:'Fullz sold in batches of 50; verified batches.', tier:'Basic', price:53},
   {title:'FAFSA Fullz', cat:4, diff:'Medium', desc:'FAFSA-related datasets sold in verified batches.', tier:'Pro', price:35},
   {title:'Online Verification Fullz', cat:4, diff:'Hard', desc:'Verified online identity data sets in bulk.', tier:'Elite', price:35},
   {title:'Proxy & VPNs — Socks5', cat:5, diff:'Easy', desc:'Fast Socks5 proxy with unlimited bandwidth, 1 year access, multiple locations.', tier:'Basic', price:18},
@@ -1099,7 +1099,7 @@ function productCard(t, seed, regionLabel){
   const isFullzItem = /Fullz/i.test(t.title);
   const isTaxRefundItem = /Tax Refund/i.test(t.title);
   const displayPrice = isTaxRefundItem
-    ? 39
+    ? 53
     : isFullzItem
       ? Math.round(35 + seededRand(seed*7)*20)
       : t.price;
@@ -1683,7 +1683,7 @@ chatToggle.addEventListener('click', ()=>{
   const open = chatPanel.classList.toggle('open');
   chatToggle.style.display = open ? 'none' : 'flex';
   if(open && !chatBody.children.length){
-    chatMsg('Welcome to BLACK::MARKET. I\'m ARIA — ask me about payments, crypto, services, or delivery.', 'bot');
+    chatMsg('Welcome to BLACK::MARKET. I\'m ARIA, your AI guide. Ask me about payments, crypto, services, or delivery.', 'bot');
   }
   chatInput.focus();
 });
