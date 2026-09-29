@@ -333,10 +333,10 @@
             </div>
           </div>
           <h3><i data-lucide="briefcase"></i> Portfolio</h3>
-          <div class="row-line"><div class="name">USA Bank Documents Completed</div><div>18 delivered</div></div>
-          <div class="row-line"><div class="name">UK Bank Documents Completed</div><div>9 delivered</div></div>
-          <div class="row-line"><div class="name">Mobile Bank Screens Created</div><div>27</div></div>
-          <div class="row-line"><div class="name">Credit Karma Reports Delivered</div><div>12 delivered</div></div>
+          <div class="row-line"><div class="name">USA Bank Documents Completed</div><div>1894 delivered</div></div>
+          <div class="row-line"><div class="name">UK Bank Documents Completed</div><div>977 delivered</div></div>
+          <div class="row-line"><div class="name">Mobile Bank Screens Created</div><div>207</div></div>
+          <div class="row-line"><div class="name">Credit Karma Reports Delivered</div><div>1211 delivered</div></div>
         </div>
 
         <div class="card panel reveal visible">
@@ -961,11 +961,11 @@ const templates = [
   {title:'UK Bank — Premier Statement', cat:1, diff:'Medium', desc:'Authentic UK bank statement with IBAN details, branch information, and premium UK banking branding.', tier:'Premium', price:26, img:'assets/ukBank.svg'},
   {title:'Bank Mobile — App Snapshot', cat:2, diff:'Easy', desc:'A mobile banking screen with balance overview, recent transactions, and modern app-style interface elements.', tier:'Mobile', price:20, img:'assets/mobileBank.svg'},
   {title:'Credit Karma — Report', cat:3, diff:'Medium', desc:'Credit Karma-style financial report with credit score summary, account alerts, and membership details.', tier:'Credit Karma', price:28, img:'assets/creditKarma.svg'},
-  {title:'Fafsa Fullz', cat:4, diff:'Easy', desc:'parents info and ssn , bank and password , student ssn and info , DL , 1044 tax form , transcripts, socials account , id.me logs ,fsaid logs , phone number , email and password , 50 fullz ', tier:'Basic', price:39},
-  {title:'Tax Refund  Fullz', cat:4, diff:'Medium', desc:'ssn,dl , id.me , 1040 form , 1044 form , w2 forms  , w9 forms , applicants info ,phone number , email and password , 50 fullz.', tier:'Pro', price:35},
+  {title:'Fafsa Fullz', cat:4, diff:'Easy', desc:'parents info and ssn , bank and password , student ssn and info , DL , 1044 tax form , transcripts, socials account , id.me logs ,fsaid logs , phone number , email and password , 50 fullz ', tier:'Basic', price:53},
+  {title:'Tax Refund  Fullz', cat:4, diff:'Medium', desc:'ssn,dl , id.me , 1040 form , 1044 form , w2 forms  , w9 forms , applicants info ,phone number , email and password , 50 fullz.', tier:'Pro', price:53},
   {title:'Online Verification Fullz', cat:4, diff:'Hard', desc:'Verified online identity data sets in bulk.', tier:'Elite', price:35},
-  {title:'Proxy & VPNs — Socks5', cat:5, diff:'Easy', desc:'Fast Socks5 proxy with unlimited bandwidth, 1 year access, multiple locations.', tier:'Basic', price:18},
-  {title:'Proxy & VPNs — Socks4', cat:5, diff:'Medium', desc:'Reliable Socks4 proxy with stable connections and optional dedicated IP.', tier:'Pro', price:18},
+  {title:'Proxy & VPNs — Socks5', cat:5, diff:'Easy', desc:'Fast Socks5 proxy with unlimited bandwidth, 1 year access, multiple locations.', tier:'Basic', price:36},
+  {title:'Proxy & VPNs — Socks4', cat:5, diff:'Medium', desc:'Reliable Socks4 proxy with stable connections and optional dedicated IP.', tier:'Pro', price:36},
   {title:'Proxy & VPNs — HTTPS', cat:5, diff:'Hard', desc:'Secure HTTPS proxy service with strong privacy and multi-country routing.', tier:'Elite', price:12},
   {title:'Proxy & VPNs — HTTP', cat:5, diff:'Hard', desc:'HTTP proxy access with flexible session options and broad compatibility.', tier:'Elite', price:12},
   {title:'Proxy & VPNs — Residential Pool', cat:5, diff:'Medium', desc:'Rotating residential IPs for high-anonymity browsing and scraping.', tier:'Pro', price:25},
@@ -1651,20 +1651,20 @@ function chatTyping(show){
 const chatKnowledge = [
   {keys:['order','purchase','buy','payment','proof','screenshot','confirm'], reply:'To confirm a payment: add items to cart, go to checkout, pick a crypto rail, then click "I\'ve Sent Payment". Attach a screenshot of the transaction — it is submitted directly to our support inbox.'},
   {keys:['crypto','btc','bitcoin','eth','ethereum','usdt','buid','binance','pay','wallet'], reply:'We accept BTC, ETH, USDT and Binance ID (BUID). Checkout generates a wallet address or BUID — send the exact amount shown, then confirm with a screenshot of the transfer.'},
-  {keys:['service','hacking','course','teach','recovery','web dev'], reply:'We offer Web Development, Hacking career guidance, Course Teaching, and Account Recovery. Scroll to the Services section and hit "Request Service" to send details directly.'},
+  {keys:['offers','hacking','course','teach','recovery','web dev'], reply:'We always have offers on wednesday and saturday , but the time zones vary, kindly check the prices and the time you make the purchases.'},
   {keys:['shipping','delivery','download','access','activate','activation'], reply:'Orders are verified manually after payment. Once your proof is received, course/lab access is activated and delivered to your email.'},
   {keys:['email','contact','support','human','agent'], reply:'For anything else, email us at info.oricon@proton.me or use the site forms — we typically reply within 24 hours.'},
-  {keys:['price','cost','discount','refund','expensive'], reply:'Prices are listed per item in USD with live crypto conversion. Refunds are handled case-by-case after review of the transaction proof.'},
-  {keys:['hello','hi','hey','yo','sup','good morning','good evening'], reply:'Hey operator! I\'m ARIA, your AI guide. Ask me about payments, crypto, services, delivery, or contact info.'}
+  {keys:['price','cost','discount','refund','expensive'], reply:'Prices are listed per item in USD with live crypto conversion. Oricon does not issue Refunds.'},
+  {keys:['hello','hi','hey','yo','sup','good morning','good evening'], reply:'Hey there! I\'m ARIA, your AI guide. Ask me about payments, crypto, services, delivery, or contact info.'}
 ];
 
 function chatReply(text){
   const t = text.toLowerCase();
-  if(t.length < 3) return 'How can I help you today, operator?';
+  if(t.length < 3) return 'How can I help you today?';
   for(const item of chatKnowledge){
     if(item.keys.some(k => t.includes(k))) return item.reply;
   }
-  return 'I\'m not sure about that one. Try asking about payments, crypto, services, delivery, or contact — or email info.oricon@proton.me for human support.';
+  return 'Kindly email : info.oricon@proton.me for accurate reply';
 }
 
 function chatSendMsg(){
@@ -1683,7 +1683,7 @@ chatToggle.addEventListener('click', ()=>{
   const open = chatPanel.classList.toggle('open');
   chatToggle.style.display = open ? 'none' : 'flex';
   if(open && !chatBody.children.length){
-    chatMsg('Welcome to BLACK::MARKET. I\'m ARIA, your AI guide. Ask me about payments, crypto, services, or delivery.', 'bot');
+    chatMsg('Welcome to The Oricon. I\'m ARIA, i am here to guide. Ask me about anything.', 'bot');
   }
   chatInput.focus();
 });
