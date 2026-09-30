@@ -1101,6 +1101,8 @@ function productCard(t, seed, regionLabel){
   const isFafsaItem = /Fafsa/i.test(t.title);
   const displayPrice = isTaxRefundItem
     ? 39
+    : isFafsaItem
+      ? 39
     : isFullzItem
       ? Math.round(35 + seededRand(seed*7)*20)
       : t.price;
