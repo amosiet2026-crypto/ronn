@@ -1098,6 +1098,7 @@ function productCard(t, seed, regionLabel){
   const id = 'p'+(productSeq++);
   const isFullzItem = /Fullz/i.test(t.title);
   const isTaxRefundItem = /Tax Refund/i.test(t.title);
+  const isFafsaItem = /Fafsa/i.test(t.title);
   const displayPrice = isTaxRefundItem
     ? 39
     : isFullzItem
