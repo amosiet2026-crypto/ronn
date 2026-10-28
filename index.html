@@ -953,7 +953,8 @@ const categories = [
   {name:'Proxy & VPNs', icon:'flag'},
   {name:'Handshake', icon:'handshake'},
   {name:'Outlier', icon:'star'},
-  {name:'Driving Licenses', icon:'credit-card'}
+  {name:'Driving Licenses', icon:'credit-card'},
+  {name:'Fresh Picks', icon:'package'}
 ];
 
 const templates = [
@@ -974,7 +975,10 @@ const templates = [
   {title:'Outlier accounts', cat:7, diff:'Hard', desc:'Fully operational, ID verified (KYC cleared), and ready for immediate project assignment.', tier:'Outlier accounts', price:116},
   {title:'US Driving License — Standard', cat:8, diff:'Easy', desc:'US state-style driving license with country-branded logos.', tier:'Basic', price:22, img:'assets/usaDL.svg'},
   {title:'UK Driving License — Express', cat:8, diff:'Medium', desc:'UK driving license with verified regional logo support.', tier:'Pro', price:32, img:'assets/ukDL.svg'},
-  {title:'Canada Driving License — Verified', cat:8, diff:'Hard', desc:'Canada driving license with full country logo delivery.', tier:'Elite', price:38, img:'assets/canDL.svg'}
+  {title:'Canada Driving License — Verified', cat:8, diff:'Hard', desc:'Canada driving license with full country logo delivery.', tier:'Elite', price:38, img:'assets/canDL.svg'},
+  {title:'poultry', cat:9, diff:'Easy', desc:'cool legit and friendly', tier:'Starter', price:22},
+  {title:'roaster', cat:9, diff:'Easy', desc:'cool legit and friendly', tier:'Starter', price:22},
+  {title:'cat', cat:9, diff:'Easy', desc:'cool legit and friendly', tier:'Starter', price:22}
 ];
 
 function seededRand(seed){
@@ -1103,9 +1107,9 @@ function productCard(t, seed, regionLabel){
     ? 39
     : isFafsaItem
       ? 39
-    : isFullzItem
-      ? Math.round(35 + seededRand(seed*7)*20)
-      : t.price;
+      : isFullzItem
+        ? Math.round(35 + seededRand(seed*7)*20)
+        : t.price;
   productRegistry[id] = {title:sanitizeHTML(t.title+(regionLabel?' — '+regionLabel+' Node':'')), price:displayPrice, tier:t.tier};
   const price = priceFor(displayPrice);
   const rating = (4.1 + seededRand(seed*2)*0.9).toFixed(1);
@@ -1186,7 +1190,7 @@ catTabs.addEventListener('click', e=>{
 /* ---- services grid ---- */
 const services = [
   {
-    icon:'bank', title:'Bank Document Service', priceLabel:'$25', badge:'Custom Bank',
+    icon:'bank', title:'Bank Document Service', priceLabel:'$25', price:25, badge:'Custom Bank',
     desc:'Custom banking documents for USA, UK, Bank Mobile, or Credit Karma-style financial summaries.',
     fields:[
       {label:'Document type', type:'select', options:['USA bank','UK bank','Bank Mobile','Credit Karma']},
@@ -1195,7 +1199,7 @@ const services = [
     ]
   },
   {
-    icon:'credit-card', title:'USA Bank Template', priceLabel:'$24', badge:'Bank USA',
+    icon:'credit-card', title:'USA Bank Template', priceLabel:'$24', price:24, badge:'Bank USA',
     desc:'High-quality USA bank statement template with polished account summary, transaction details, and routing-format presentation.',
     fields:[
       {label:'Bank name', type:'text', placeholder:'e.g. Chase, Wells Fargo, Bank of America'},
@@ -1204,7 +1208,7 @@ const services = [
     ]
   },
   {
-    icon:'smartphone', title:'Bank Mobile', priceLabel:'$20', badge:'Bank Mobile',
+    icon:'smartphone', title:'Bank Mobile', priceLabel:'$20', price:20, badge:'Bank Mobile',
     desc:'App-ready Bank Mobile screen with balance overview, recent transactions, and clean mobile UI.',
     fields:[
       {label:'Platform style', type:'select', options:['iOS','Android','Generic mobile']},
@@ -1213,7 +1217,7 @@ const services = [
     ]
   },
   {
-    icon:'smartphone', title:'Mobile Bank Template', priceLabel:'$20', badge:'Mobile Bank',
+    icon:'smartphone', title:'Mobile Bank Template', priceLabel:'$20', price:20, badge:'Mobile Bank',
     desc:'App-ready mobile banking template with balance overview, recent transactions, and clean mobile UI design.',
     fields:[
       {label:'Platform style', type:'select', options:['iOS','Android','Generic mobile']},
@@ -1223,6 +1227,17 @@ const services = [
   }
 ];
 const serviceGrid = document.getElementById('servicesGrid');
+function addServiceToCart(serviceIdx){
+  const s = services[serviceIdx];
+  if (!s) {
+    secureLog('Invalid service index', 'warn');
+    title: s.title,
+    price: Number(s.price ?? parseFloat(String(s.priceLabel).replace(/[^\d.]/g, '')) || 0),
+    tier: s.badge || 'Service'
+  });
+  updateCartUI();
+  openCart();
+}
 serviceGrid.innerHTML = services.map((s,i)=>`
   <div class="panel product-card">
     <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
@@ -1238,7 +1253,7 @@ serviceGrid.innerHTML = services.map((s,i)=>`
       </div>
     </div>
     <div class="card-actions">
-      <button class="buy-btn" data-service-idx="${i}">Request Service</button>
+      <button class="buy-btn" data-service-idx="${i}">Add to Cart</button>
     </div>
   </div>
 `).join('');
@@ -1248,7 +1263,7 @@ serviceGrid.addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-service-idx]');
   if (btn) {
     const idx = parseInt(btn.dataset.serviceIdx);
-    openServiceInquiry(idx);
+    addServiceToCart(idx);
   }
 });
 
@@ -1442,6 +1457,17 @@ document.getElementById('copyWallet').addEventListener('click', ()=>{
 });
 
 /* ============ CONFIRMATION FORM ============ */
+function syncPaymentProofState(){
+  const input = document.getElementById('proofFile');
+  const btn = document.getElementById('sendConfirmBtn');
+  const hasImage = !!input.files[0] && input.files[0].type.startsWith('image/');
+  btn.disabled = !hasImage;
+  btn.style.opacity = hasImage ? '1' : '0.6';
+  btn.style.cursor = hasImage ? 'pointer' : 'not-allowed';
+  btn.title = hasImage ? 'Submit payment proof' : 'Please attach a payment screenshot first';
+  return hasImage;
+}
+
 document.getElementById('sentPaymentBtn').addEventListener('click', ()=>{
   document.getElementById('paymentModal').classList.remove('open');
   document.getElementById('confirmOrderRef').value = currentOrderRef;
@@ -1450,6 +1476,7 @@ document.getElementById('sentPaymentBtn').addEventListener('click', ()=>{
   document.getElementById('confirmTerms').checked = false;
   document.getElementById('fileNameDisplay').textContent = '';
   document.getElementById('proofFile').value = '';
+  syncPaymentProofState();
   document.getElementById('confirmFormWrap').style.display = 'block';
   document.getElementById('confirmSuccessWrap').style.display = 'none';
   document.getElementById('supportEmailDisplay').textContent = SUPPORT_EMAIL;
@@ -1467,8 +1494,10 @@ document.getElementById('proofFile').addEventListener('change', (e)=>{
   const f = e.target.files[0];
   if (f && f.type.startsWith('image/')) {
     document.getElementById('fileNameDisplay').textContent = 'Selected: '+sanitizeHTML(f.name)+' — will be attached automatically on submit.';
+    syncPaymentProofState();
   } else {
     document.getElementById('fileNameDisplay').textContent = 'Invalid file type. Please select an image.';
+    syncPaymentProofState();
   }
 });
 
@@ -1476,6 +1505,15 @@ document.getElementById('sendConfirmBtn').addEventListener('click', async ()=>{
   const email = document.getElementById('confirmEmail').value.trim();
   const description = document.getElementById('confirmDescription').value.trim();
   const termsAgree = document.getElementById('confirmTerms').checked;
+  const proofFile = document.getElementById('proofFile').files[0];
+
+  if (!proofFile || !proofFile.type.startsWith('image/')) {
+    secureLog('A payment screenshot is required before continuing', 'warn');
+    document.getElementById('fileNameDisplay').textContent = 'Please attach a payment screenshot before submitting.';
+    document.getElementById('proofFile').focus?.();
+    syncPaymentProofState();
+    return;
+  }
   
   if (!isValidEmail(email)) {
     secureLog('Invalid email format', 'warn');
@@ -1502,7 +1540,6 @@ document.getElementById('sendConfirmBtn').addEventListener('click', async ()=>{
   btn.innerHTML = '<i data-lucide="loader" style="width:15px;height:15px;" class="spin"></i> Sending...';
   refreshIcons();
 
-  const proofFile = document.getElementById('proofFile').files[0];
   const formData = new FormData();
   formData.append('_subject', 'Payment confirmation — Order '+currentOrderRef);
   formData.append('_template', 'table');
@@ -1538,83 +1575,6 @@ document.getElementById('sendConfirmBtn').addEventListener('click', async ()=>{
     refreshIcons();
     document.getElementById('fileNameDisplay').textContent = 'Submission failed. Please check your connection and try again.';
   }
-});
-
-/* ============ SERVICE INQUIRY ============ */
-function openServiceInquiry(idx){
-  if (idx < 0 || idx >= services.length) {
-    secureLog('Invalid service index', 'warn');
-    return;
-  }
-  const s = services[idx];
-  document.getElementById('serviceModalTitle').textContent = sanitizeHTML(s.title);
-  document.getElementById('serviceModalDesc').textContent = sanitizeHTML(s.desc + ' (' + s.priceLabel + ')');
-  const fieldsWrap = document.getElementById('serviceFormFields');
-  fieldsWrap.innerHTML = s.fields.map((f,i)=>{
-    if(f.type === 'select'){
-      return `<div class="form-field"><label>${sanitizeHTML(f.label)}</label><select data-fi="${i}">${f.options.map(o=>`<option>${sanitizeHTML(o)}</option>`).join('')}</select></div>`;
-    } else if(f.type === 'textarea'){
-      return `<div class="form-field"><label>${sanitizeHTML(f.label)}</label><textarea data-fi="${i}" placeholder="${sanitizeHTML(f.placeholder||'')}"></textarea></div>`;
-    }
-    return `<div class="form-field"><label>${sanitizeHTML(f.label)}</label><input type="text" data-fi="${i}" placeholder="${sanitizeHTML(f.placeholder||'')}"></div>`;
-  }).join('');
-  document.getElementById('serviceModal').dataset.serviceIdx = idx;
-  document.getElementById('serviceModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-
-document.getElementById('serviceClose').addEventListener('click', ()=>{
-  document.getElementById('serviceModal').classList.remove('open');
-  document.body.style.overflow='';
-});
-
-document.getElementById('sendServiceBtn').addEventListener('click', async ()=>{
-  const idx = parseInt(document.getElementById('serviceModal').dataset.serviceIdx);
-  if (idx < 0 || idx >= services.length) {
-    secureLog('Invalid service index', 'warn');
-    return;
-  }
-  const s = services[idx];
-  const email = document.getElementById('serviceEmail').value.trim();
-  if (!isValidEmail(email)) {
-    secureLog('Invalid email format', 'warn');
-    document.getElementById('serviceEmail').focus();
-    return;
-  }
-  const sanitizedEmail = sanitizeEmail(email);
-  const inputs = document.querySelectorAll('#serviceFormFields [data-fi]');
-  const btn = document.getElementById('sendServiceBtn');
-  const originalHTML = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<i data-lucide="loader" style="width:15px;height:15px;" class="spin"></i> Sending...';
-  refreshIcons();
-
-  const formData = new FormData();
-  formData.append('_subject', 'Service request — '+s.title);
-  formData.append('_template', 'table');
-  formData.append('_captcha', 'false');
-  formData.append('Requested service', s.title);
-  formData.append('Customer email', sanitizedEmail);
-  inputs.forEach(inp=>{
-    const label = s.fields[parseInt(inp.dataset.fi)].label;
-    formData.append(label, inp.value);
-  });
-
-  try {
-    const res = await fetch('https://formsubmit.co/'+SUPPORT_EMAIL, {
-      method: 'POST',
-      body: formData
-    });
-    if (!res.ok) throw new Error('HTTP '+res.status);
-    document.getElementById('serviceModal').classList.remove('open');
-    document.body.style.overflow='';
-  } catch(err) {
-    secureLog('Service submit failed: '+err.message, 'error');
-    document.body.style.overflow='';
-  }
-  btn.disabled = false;
-  btn.innerHTML = originalHTML;
-  refreshIcons();
 });
 
 /* close checkout-type modals on backdrop click */
